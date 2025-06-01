@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -114,7 +113,7 @@
             padding: 0 20px;
             width: 100%;
             box-sizing: border-box;
-            gap: 20px;
+            gap: 5px;
             scroll-snap-type: x mandatory;
             scrollbar-width: thin;
             scrollbar-color: #bbb #f1f1f1;
@@ -135,6 +134,7 @@
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s;
+            position: relative;
             scroll-snap-align: start;
         }
         .product:hover {
@@ -143,13 +143,36 @@
         .product img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 0;
         }
         .product p {
             margin: 5px 0;
         }
         .product .price {
             font-weight: bold;
+        }
+        .product .add-to-cart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 80px); /* Desplazamiento inicial de 80px (aprox. 2 cm) hacia abajo */
+            background: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-size: 0.9em;
+            width: 90%;
+        }
+        .product:hover .add-to-cart {
+            opacity: 1;
+            transform: translate(-50%, -50%); /* Centrado exacto al hacer hover */
+        }
+        .product .add-to-cart:hover {
+            background: #555;
         }
         /* Modal */
         .modal {
@@ -298,6 +321,10 @@
                 width: 150px;
                 min-width: 150px;
             }
+            .product .add-to-cart {
+                padding: 8px 15px;
+                font-size: 0.8em;
+            }
         }
         @media (max-width: 480px) {
             .product {
@@ -306,6 +333,10 @@
             }
             .product p {
                 font-size: 0.9em;
+            }
+            .product .add-to-cart {
+                padding: 6px 10px;
+                font-size: 0.7em;
             }
         }
     </style>
@@ -357,82 +388,97 @@
                 <img alt="Maxilazos" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXdnjCFtJm5EhEvClhpsqjsYwwH2Xdqql3H45tWmgLdhiRX--KLwloCAl85SxTImNaOYYbS1MOrlGYrDwH31YoIyFBBn7KapQIKbAHVfoyNmbRBjjgmF0_SefXWn6udgSSaO19kdNtmnQBd=w2000-h2000-p-k-no"/>
                 <p>Maxilazos - 5 Colores</p>
                 <p class="price">S/ 7.00</p>
+                <button class="add-to-cart" data-id="1">Agregar al carrito</button>
             </div>
             <div class="product" data-id="2" data-colors='[{"color": "#17202a", "title": "Negro"}, {"color": "#fff9c4", "title": "Crema"}, {"color": "#fdebd0", "title": "Piel"}, {"color": "#fdfefe", "title": "Crema"}]' data-rating="⭐⭐⭐☆☆ (3.2)" data-description="Ganchos en forma de corazón, ideales para looks delicados.">
                 <img alt="Mini Gancho Corazón" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no"/>
                 <p>Mini Gancho Corazón</p>
                 <p class="price">S/ 2.50</p>
+                <button class="add-to-cart" data-id="2">Agregar al carrito</button>
             </div>
             <div class="product" data-id="3" data-colors='[{"color": "#FFFFFF", "title": "Blanco"}, {"color": "#FF0000", "title": "Rojo"}, {"color": "#008000", "title": "Verde"}]' data-rating="⭐⭐⭐⭐⭐ (5.0)" data-description="Ganchos temáticos navideños para un estilo festivo.">
                 <img alt="Ganchos Navideños" src="https://lh3.googleusercontent.com/gps-cs/AIky0YV8A_P0YjCC6AIfC2B6HFvCKobK0UJZjVWMnzr6lfYPVXUk0gsszvJXojCK_ycIVH0cOD1-Qw3ICj1Bi9eLIf2TH0ZFaL14TuisJOWESznCPwqs2AAn_lgVOo2yGLhrKuG1yjgsGrWPIZ0k=w2000-h2000-p-k-no"/>
                 <p>Ganchos Navideños</p>
                 <p class="price">S/ 4.00</p>
+                <button class="add-to-cart" data-id="3">Agregar al carrito</button>
             </div>
             <div class="product" data-id="4" data-colors='[{"color": "#FFD700", "title": "Amarillo"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos hawaianos vibrantes para un look tropical.">
                 <img alt="Gancho Hawaiano" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVaD4OrbInMGPZXKiKtKplaYEn2Ck-9KCl8p9FJbJIXPMWFCDw9Dd5lrbO-8FfXeJZKvIEr-K5UpFwrCnofwtR30imdZTojz2gxrHqZLSM3qody1gDhWdXAm_C4le7hQ4zKL3imga1TIh_j=w2000-h2000-p-k-no"/>
                 <p>Gancho Hawaiano</p>
                 <p class="price">S/ 5.00</p>
+                <button class="add-to-cart" data-id="4">Agregar al carrito</button>
             </div>
             <div class="product" data-id="5" data-colors='[{"color": "#5dade2", "title": "Celeste"}, {"color": "#ebf5fb", "title": "Agua"}, {"color": "#FFFFFF", "title": "Blanco"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos acrílicos elegantes en tonos celestes.">
-                <img alt="Ganchos Acrílicos Color Celeste" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfWiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no"/>
+                <img alt="Ganchos Acrílicos Color Celeste" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfQiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no"/>
                 <p>Ganchos Acrílicos Color Celeste</p>
                 <p class="price">S/ 5.00</p>
+                <button class="add-to-cart" data-id="5">Agregar al carrito</button>
             </div>
             <div class="product" data-id="6" data-colors='[{"color": "#8d6e63", "title": "Marrón"}, {"color": "#fef9e7", "title": "Crema"}]' data-rating="⭐⭐⭐☆☆ (3.1)" data-description="Ganchos clásicos para un estilo minimalista.">
                 <img alt="Ganchos" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUepENF6loS0sqfXxEEZlTcAEQ7R-6iS6rmphnT9YjPc9whL2WIk8tCzVNnHDeaj6AaV3e6-k4yeUx9j6nSHq-l2Tc_t0dGMQLhBQrbdREDnxR65_tbipCAL3NCKmRQYWk5geU5V_jn3EiW=w2000-h2000-p-k-no"/>
                 <p>Ganchos</p>
                 <p class="price">S/ 4.50</p>
+                <button class="add-to-cart" data-id="6">Agregar al carrito</button>
             </div>
             <div class="product" data-id="7" data-colors='[]' data-rating="⭐⭐⭐⭐☆ (4.1)" data-description="Ganchos en forma de flor con diseño inspirado en el sol.">
                 <img alt="Ganchos Torna Sol en forma de Flor" src="https://lh3.googleusercontent.com/gps-cs/AIky0YX2NRiy9kc9B9F5EY9kAoTjy699I8L7qzIaAFyN6ktzntZDbknG5_v1B6_JgD_hJDZQ7pAonmz2ynxpJqX4tYXVpt2EJISwaxV7Vd5er2HXevBcfzH_2KoEuxffPMG6wVLrMxkXZaJcUGxc=w2000-h2000-p-k-no"/>
                 <p>Ganchos Torna Sol en forma de Flor</p>
                 <p class="price">S/ 6.00</p>
+                <button class="add-to-cart" data-id="7">Agregar al carrito</button>
             </div>
             <div class="product" data-id="8" data-colors='[{"color": "#FFFF66", "title": "Amarillo"}, {"color": "#CCFF00", "title": "Verde"}, {"color": "#FF8C00", "title": "Anaranjado"}]' data-rating="⭐⭐⭐☆☆ (3.5)" data-description="Ganchos kawai con diseño floral, ideales para niños.">
                 <img alt="Ganchos Kawai en forma de Flor" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXzdeSiF8Ekcd_sbWEkePfXIFlDCt8BeIvwjgW0_jHy1u9d3KWkRPGKY0IPp8ADAmGFn46hFm8U5vXqhoZ738QBNnwuwb-UXng4k1wKXRwyarfw7ST9PYntIH_SA_XEF0lDF6STVaLz16z2=w2000-h2000-p-k-no"/>
                 <p>Ganchos Kawai en forma de Flor</p>
                 <p class="price">S/ 4.50</p>
+                <button class="add-to-cart" data-id="8">Agregar al carrito</button>
             </div>
             <div class="product" data-id="9" data-colors='[{"color": "#FFB347", "title": "Melón"}, {"color": "#FFD700", "title": "Amarillo"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos florales en tonos cálidos para un look vibrante.">
                 <img alt="Ganchos de Flores" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUem5vYUL5I1PM57jknLifOO7yf5kSVMtMghU4lP6w0ZMUkV2L9UYoqFLTR_8PcGATvSRKyf0IVg5IYHBQzc5_aND9V8BvtQS47MAT--YXhLlrk645yFo2vaWRADuVRrnbiL5rs4ubhXvU=w2000-h2000-p-k-no"/>
                 <p>Ganchos de Flores</p>
                 <p class="price">S/ 5.00</p>
+                <button class="add-to-cart" data-id="9">Agregar al carrito</button>
             </div>
             <!-- Categoría 2: Cristal -->
             <div class="product" data-id="14" data-colors='[]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Mini ganchitos florales para destacar tu peinado.">
                 <img alt="Par de mini ganchitos en forma de flor" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVcDqGO_EKNry0Eb-BkdsNH0V0lOhwW7AM5WEqFv7Gh9RNq0Vs2UjkmI2yY0CGgt5haYI5RgwRDHv-LMBqc5bvmX245QMyriwIoyJyniPQH9cJJ9iCC2fC8hY06M9BU9nAd6NhCLGVGCC34N=w2000-h2000-p-k-no"/>
                 <p>Par de mini ganchitos en forma de flor</p>
                 <p class="price">S/ 3.00</p>
+                <button class="add-to-cart" data-id="14">Agregar al carrito</button>
             </div>
             <div class="product" data-id="15" data-colors='[]' data-rating="⭐⭐⭐☆☆ (3.5)" data-description="Ganchitos en forma de mariposa, perfectos para peinados infantiles.">
                 <img alt="Mini ganchitos en forma de mariposa" src="https://lh3.googleusercontent.com/gps-cs/AIky0YW1eFtqiwT_PM-xOZndQzQz2iVogh-XQVJclLEtgsh0i5wUGm9NvOCot9LJLfDmZE58abznArTin0EgjEMw3HuKeK9_9hoODK0kla3nM-GYGSvA8_xXCBmu_qiSuoHzgpSaO_2EtqXLAjnCs34l=w2000-h2000-p-k-no"/>
                 <p>Mini ganchitos en forma de mariposa</p>
                 <p class="price">S/ 2.00</p>
+                <button class="add-to-cart" data-id="15">Agregar al carrito</button>
             </div>
             <div class="product" data-id="16" data-colors='[]' data-rating="⭐⭐⭐☆☆ (3.3)" data-description="Mini ganchitos versátiles para cualquier ocasión.">
                 <img alt="Mini ganchitos" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUgnWieVRURnUHds0U4E5FROmRmvztpc0ynONqB5wFO-tvCmbrBn0-E971IAl2YG7r7cobC9Hx-g0AbDpTP71ukEEb6n20lHQz-aPBoI5xDWtVwABfSJFIbqdRT6_YJzOT7x8uhaX-KBSLE=w2000-h2000-p-k-no"/>
                 <p>Mini ganchitos</p>
                 <p class="price">S/ 1.50</p>
+                <button class="add-to-cart" data-id="16">Agregar al carrito</button>
             </div>
             <div class="product" data-id="17" data-colors='[{"color": "#FFC0CB", "title": "Rosa Pastel"}, {"color": "#FFD700", "title": "Amarillo"}, {"color": "#00BFFF", "title": "Azul"}, {"color": "#FF4500", "title": "Naranja"}, {"color": "#008000", "title": "Verde"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ligas en colores pasteles y fuertes, ideales para cualquier estilo.">
                 <img alt="Ligas colores pasteles y fuertes" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVwhLWhfaBVh3ChmdRjktxd6WCi7W6fTmz2_7TvWPHTT_-3tX1zci-DGspLNMmn3SpAYgh9RN5G_lHRBehTbWzF16lZ9CNiBbjgj5-EVSXMU3aVjCsYaPQ5Maahznx9Fi79zzSnwLxM_nkC=w2000-h2000-p-k-no"/>
                 <p>Ligas colores pasteles y fuertes</p>
                 <p class="price">S/ 1.00</p>
+                <button class="add-to-cart" data-id="17">Agregar al carrito</button>
             </div>
             <div class="product" data-id="18" data-colors='[{"color": "#000000", "title": "Negro"}]' data-rating="⭐⭐⭐☆☆ (3.3)" data-description="Colets negros clásicos y resistentes.">
                 <img alt="Colets negros" src="https://lh3.googleusercontent.com/gps-cs/AIky0YWE3Z0a1qVkSdmBI9RQzayKeT8bgvXn5RTJNXmMJjHG9uzg5VUrwt4-PKEq6AdcYPITi3LkJvKtdxDXq6PucsAOpzZGm2J8QGEYCR4Ff59f3YXXaKQ_Ww8lgm4vOYlRuyCNXxPuyWPFWf23=w2000-h2000-p-k-no"/>
                 <p>Colets negros</p>
                 <p class="price">S/ 1.00</p>
+                <button class="add-to-cart" data-id="18">Agregar al carrito</button>
             </div>
             <div class="product" data-id="19" data-colors='[{"color": "#FFB6C1", "title": "Rosa Pastel"}, {"color": "#87CEFA", "title": "Azul Pastel"}, {"color": "#98FB98", "title": "Verde Pastel"}]' data-rating="⭐⭐⭐☆☆ (3.4)" data-description="Colets en tonos pasteles para un look suave y elegante.">
                 <img alt="Colets colores pasteles" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVVXgYaHEulEuraO7tX6LShXlnoogs6cvwc7jryv8vOVwEt2wCEPWyj0ihUEHTjGMKv0HpL3uglAD96vZsANfdnMrLB4hRI1quw3OaPX-ewOFjUY9eF2ggyG4sMZLcBfJ8amsKoKsAgOXPG=w2000-h2000-p-k-no"/>
                 <p>Colets colores pasteles</p>
                 <p class="price">S/ 1.00</p>
+                <button class="add-to-cart" data-id="19">Agregar al carrito</button>
             </div>
         </div>
 
         <!-- Modal -->
- <div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+<div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-content">
                 <span class="close-btn" aria-label="Cerrar modal">×</span>
                 <img id="modalImage" alt="" src="">
@@ -457,7 +503,7 @@
                 <p>VER BUFANDAS</p>
             </div>
             <div class="model-item">
-                <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfWiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no" alt="Model with Bag">
+                <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfQiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no" alt="Model with Bag">
                 <p>VER CARTERAS</p>
             </div>
         </div>
@@ -592,6 +638,50 @@
                 modal.style.display = 'none';
                 modal.setAttribute('aria-hidden', 'true');
             }
+        });
+
+        // Add to cart button functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent triggering the product click
+                const product = button.closest('.product');
+                const id = product.getAttribute('data-id');
+                const name = product.querySelector('p').textContent;
+                const price = product.querySelector('.price').textContent;
+                const image = product.querySelector('img').src;
+                const alt = product.querySelector('img').alt;
+                const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
+                const rating = product.getAttribute('data-rating');
+                const description = product.getAttribute('data-description');
+
+                modalImage.src = image;
+                modalImage.alt = alt;
+                modalTitle.textContent = name;
+                modalDescription.textContent = description;
+                modalRating.textContent = rating;
+                modalPrice.textContent = price;
+                modalAddCart.setAttribute('data-id', id);
+                modalAddCart.setAttribute('data-name', name);
+                modalAddCart.setAttribute('data-price', price.replace('S/ ', ''));
+
+                modalColors.innerHTML = colors.map(color => 
+                    `<span class="color-circle" style="background-color: ${color.color};" title="${color.title}" data-color="${color.color}"></span>`
+                ).join('');
+
+                quantityInput.value = 1;
+                selectedColor = null;
+                modalColors.querySelectorAll('.color-circle').forEach(circle => {
+                    circle.classList.remove('selected');
+                    circle.addEventListener('click', () => {
+                        modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+                        circle.classList.add('selected');
+                        selectedColor = circle.getAttribute('data-color');
+                    });
+                });
+
+                modal.style.display = 'flex';
+                modal.setAttribute('aria-hidden', 'false');
+            });
         });
     </script>
 </body>
