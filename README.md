@@ -432,10 +432,6 @@
                 </ul>
             </nav>
             <div class="icons">
-                <img src="https://via.placeholder.com/20x20?text=Search" alt="Search">
-                <img src="https://via.placeholder.com/20x20?text=User" alt="User">
-                <img src="https://via.placeholder.com/20x20?text=Heart" alt="Wishlist">
-                <img src="https://via.placeholder.com/20x20?text=Cart" alt="Cart">
             </div>
         </div>
 
