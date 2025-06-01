@@ -429,11 +429,6 @@
             <nav>
                 <ul>
                     <li><a href="#">NUEVO!</a></li>
-                    <li><a href="#">ACCESORIOS</a></li>
-                    <li><a href="#">#TM</a></li>
-                    <li><a href="#">REGALABLES</a></li>
-                    <li><a href="#">INFANTIL</a></li>
-                    <li><a href="#">LICENCIAS</a></li>
                 </ul>
             </nav>
             <div class="icons">
