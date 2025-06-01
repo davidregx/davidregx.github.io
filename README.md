@@ -85,6 +85,10 @@
             background: rgba(0, 0, 0, 0.5);
             padding: 5px 15px;
             border-radius: 5px;
+            cursor: pointer;
+        }
+        .carousel .banner-text:hover {
+            background: rgba(0, 0, 0, 0.7);
         }
         .carousel .dots {
             position: absolute;
@@ -155,7 +159,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, 80px); /* Desplazamiento inicial de 80px (aprox. 2 cm) hacia abajo */
+            transform: translate(-50%, 80px);
             background: rgba(51, 51, 51, 0.8);
             color: #fff;
             border: none;
@@ -169,7 +173,7 @@
         }
         .product:hover .add-to-cart {
             opacity: 1;
-            transform: translate(-50%, -50%); /* Centrado exacto al hacer hover */
+            transform: translate(-50%, -50%);
         }
         .product .add-to-cart:hover {
             background: #555;
@@ -285,6 +289,70 @@
             cursor: pointer;
             color: #333;
         }
+        /* View All Products Modal */
+        .view-all-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .view-all-modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 90%;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .view-all-modal-content h2 {
+            margin: 0 0 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .search-container {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .search-input {
+            width: 80%;
+            max-width: 400px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #333;
+        }
+        .view-all-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0 10px;
+        }
+        .view-all-products .product {
+            width: 100%;
+            min-width: unset;
+        }
+        .view-all-modal-content .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #333;
+        }
         /* Model Section */
         .model-section {
             display: flex;
@@ -325,6 +393,12 @@
                 padding: 8px 15px;
                 font-size: 0.8em;
             }
+            .view-all-products {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .search-input {
+                width: 90%;
+            }
         }
         @media (max-width: 480px) {
             .product {
@@ -337,6 +411,12 @@
             .product .add-to-cart {
                 padding: 6px 10px;
                 font-size: 0.7em;
+            }
+            .view-all-products {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            .search-input {
+                width: 95%;
             }
         }
     </style>
@@ -365,7 +445,7 @@
         </div>
 
         <!-- Carousel -->
- <div class="carousel">
+<div class="carousel">
             <div class="slides">
                 <div class="slide-container">
                     <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner 1">
@@ -374,7 +454,7 @@
                     <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner 2">
                 </div>
             </div>
-            <div class="banner-text">VER TODO</div>
+            <div class="banner-text" id="viewAllBtn">VER TODO</div>
             <div class="dots">
                 <span class="active"></span>
                 <span></span>
@@ -478,7 +558,7 @@
         </div>
 
         <!-- Modal -->
-<div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+ <div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-content">
                 <span class="close-btn" aria-label="Cerrar modal">×</span>
                 <img id="modalImage" alt="" src="">
@@ -496,8 +576,20 @@
             </div>
         </div>
 
+        <!-- View All Products Modal -->
+<div class="view-all-modal" id="viewAllModal" role="dialog" aria-labelledby="viewAllModalTitle" aria-hidden="true">
+            <div class="view-all-modal-content">
+                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <h2 id="viewAllModalTitle">Todos los Productos</h2>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." aria-label="Buscar productos">
+                </div>
+                <div class="view-all-products" id="viewAllProducts"></div>
+            </div>
+        </div>
+
         <!-- Model Section -->
-<div class="model-section">
+ <div class="model-section">
             <div class="model-item">
                 <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YV8A_P0YjCC6AIfC2B6HFvCKobK0UJZjVWMnzr6lfYPVXUk0gsszvJXojCK_ycIVH0cOD1-Qw3ICj1Bi9eLIf2TH0ZFaL14TuisJOWESznCPwqs2AAn_lgVOo2yGLhrKuG1yjgsGrWPIZ0k=w2000-h2000-p-k-no" alt="Model with Scarf">
                 <p>VER BUFANDAS</p>
@@ -551,48 +643,49 @@
 
         let selectedColor = null;
 
+        function openProductModal(product) {
+            const id = product.getAttribute('data-id');
+            const name = product.querySelector('p').textContent;
+            const price = product.querySelector('.price').textContent;
+            const image = product.querySelector('img').src;
+            const alt = product.querySelector('img').alt;
+            const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
+            const rating = product.getAttribute('data-rating');
+            const description = product.getAttribute('data-description');
+
+            modalImage.src = image;
+            modalImage.alt = alt;
+            modalTitle.textContent = name;
+            modalDescription.textContent = description;
+            modalRating.textContent = rating;
+            modalPrice.textContent = price;
+            modalAddCart.setAttribute('data-id', id);
+            modalAddCart.setAttribute('data-name', name);
+            modalAddCart.setAttribute('data-price', price.replace('S/ ', ''));
+
+            modalColors.innerHTML = colors.map(color => 
+                `<span class="color-circle" style="background-color: ${color.color};" title="${color.title}" data-color="${color.color}"></span>`
+            ).join('');
+
+            quantityInput.value = 1;
+            selectedColor = null;
+            modalColors.querySelectorAll('.color-circle').forEach(circle => {
+                circle.classList.remove('selected');
+                circle.addEventListener('click', () => {
+                    modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+                    circle.classList.add('selected');
+                    selectedColor = circle.getAttribute('data-color');
+                });
+            });
+
+            modal.style.display = 'flex';
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
         products.forEach(product => {
             product.addEventListener('click', (e) => {
-                // Ignore clicks on buttons within the modal
                 if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
-
-                const id = product.getAttribute('data-id');
-                const name = product.querySelector('p').textContent;
-                const price = product.querySelector('.price').textContent;
-                const image = product.querySelector('img').src;
-                const alt = product.querySelector('img').alt;
-                const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
-                const rating = product.getAttribute('data-rating');
-                const description = product.getAttribute('data-description');
-
-                modalImage.src = image;
-                modalImage.alt = alt;
-                modalTitle.textContent = name;
-                modalDescription.textContent = description;
-                modalRating.textContent = rating;
-                modalPrice.textContent = price;
-                modalAddCart.setAttribute('data-id', id);
-                modalAddCart.setAttribute('data-name', name);
-                modalAddCart.setAttribute('data-price', price.replace('S/ ', ''));
-
-                modalColors.innerHTML = colors.map(color => 
-                    `<span class="color-circle" style="background-color: ${color.color};" title="${color.title}" data-color="${color.color}"></span>`
-                ).join('');
-
-                // Reset quantity and selected color
-                quantityInput.value = 1;
-                selectedColor = null;
-                modalColors.querySelectorAll('.color-circle').forEach(circle => {
-                    circle.classList.remove('selected');
-                    circle.addEventListener('click', () => {
-                        modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
-                        circle.classList.add('selected');
-                        selectedColor = circle.getAttribute('data-color');
-                    });
-                });
-
-                modal.style.display = 'flex';
-                modal.setAttribute('aria-hidden', 'false');
+                openProductModal(product);
             });
         });
 
@@ -643,45 +736,77 @@
         // Add to cart button functionality
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent triggering the product click
+                e.stopPropagation();
                 const product = button.closest('.product');
-                const id = product.getAttribute('data-id');
-                const name = product.querySelector('p').textContent;
-                const price = product.querySelector('.price').textContent;
-                const image = product.querySelector('img').src;
-                const alt = product.querySelector('img').alt;
-                const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
-                const rating = product.getAttribute('data-rating');
-                const description = product.getAttribute('data-description');
+                openProductModal(product);
+            });
+        });
 
-                modalImage.src = image;
-                modalImage.alt = alt;
-                modalTitle.textContent = name;
-                modalDescription.textContent = description;
-                modalRating.textContent = rating;
-                modalPrice.textContent = price;
-                modalAddCart.setAttribute('data-id', id);
-                modalAddCart.setAttribute('data-name', name);
-                modalAddCart.setAttribute('data-price', price.replace('S/ ', ''));
+        // View All Products Modal functionality
+        const viewAllModal = document.getElementById('viewAllModal');
+        const viewAllBtn = document.getElementById('viewAllBtn');
+        const viewAllProductsContainer = document.getElementById('viewAllProducts');
+        const viewAllCloseBtn = document.querySelector('.view-all-modal .close-btn');
+        const productSearch = document.getElementById('productSearch');
 
-                modalColors.innerHTML = colors.map(color => 
-                    `<span class="color-circle" style="background-color: ${color.color};" title="${color.title}" data-color="${color.color}"></span>`
-                ).join('');
+        function updateProductList(searchTerm = '') {
+            viewAllProductsContainer.innerHTML = '';
+            const filteredProducts = Array.from(products).filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                return name.includes(searchTerm.toLowerCase());
+            });
 
-                quantityInput.value = 1;
-                selectedColor = null;
-                modalColors.querySelectorAll('.color-circle').forEach(circle => {
-                    circle.classList.remove('selected');
-                    circle.addEventListener('click', () => {
-                        modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
-                        circle.classList.add('selected');
-                        selectedColor = circle.getAttribute('data-color');
-                    });
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                viewAllProductsContainer.appendChild(productClone);
+            });
+
+            viewAllProductsContainer.querySelectorAll('.product').forEach(product => {
+                product.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
+                    viewAllModal.style.display = 'none';
+                    viewAllModal.setAttribute('aria-hidden', 'true');
+                    openProductModal(product);
                 });
 
-                modal.style.display = 'flex';
-                modal.setAttribute('aria-hidden', 'false');
+                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    viewAllModal.style.display = 'none';
+                    viewAllModal.setAttribute('aria-hidden', 'true');
+                    openProductModal(product);
+                });
             });
+        }
+
+        viewAllBtn.addEventListener('click', () => {
+            productSearch.value = '';
+            updateProductList();
+            viewAllModal.style.display = 'flex';
+            viewAllModal.setAttribute('aria-hidden', 'false');
+            productSearch.focus();
+        });
+
+        productSearch.addEventListener('input', () => {
+            updateProductList(productSearch.value);
+        });
+
+        viewAllCloseBtn.addEventListener('click', () => {
+            viewAllModal.style.display = 'none';
+            viewAllModal.setAttribute('aria-hidden', 'true');
+        });
+
+        viewAllModal.addEventListener('click', (e) => {
+            if (e.target === viewAllModal) {
+                viewAllModal.style.display = 'none';
+                viewAllModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && viewAllModal.style.display === 'flex') {
+                viewAllModal.style.display = 'none';
+                viewAllModal.setAttribute('aria-hidden', 'true');
+            }
         });
     </script>
 </body>
