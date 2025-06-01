@@ -428,7 +428,6 @@
             <div class="logo">TODOMODA</div>
             <nav>
                 <ul>
-                    <li><a href="#">NUEVO!</a></li>
                 </ul>
             </nav>
             <div class="icons">
