@@ -26,7 +26,7 @@
             box-sizing: border-box;
         }
         .header .logo img {
-            height: 40px; /* Set logo height */
+            height: 70px; /* Set logo height */
             width: auto; /* Maintain aspect ratio */
         }
         .header nav ul {
