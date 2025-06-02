@@ -361,11 +361,11 @@
             margin: 20px 0;
         }
         .category-btn {
-            font-size: 1.5em;
+            font-size: 1.2em; /* Reduced font size */
             font-weight: bold;
             color: #fff;
             background: rgba(0, 0, 0, 0.5);
-            padding: 5px 15px;
+            padding: 4px 10px; /* Smaller padding */
             border-radius: 5px;
             cursor: pointer;
             border: none;
@@ -373,6 +373,34 @@
         }
         .category-btn:hover {
             background: rgba(0, 0, 0, 0.7);
+        }
+        /* Model Section */
+        .model-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            width: 100%;
+            flex-wrap: nowrap; /* Prevent wrapping to keep images side by side */
+        }
+        .model-item {
+            position: relative;
+            text-align: center;
+            width: 50%; /* Each item takes half the container width */
+            max-width: none; /* Remove max-width to allow full expansion */
+        }
+        .model-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            cursor: pointer; /* Indicate clickability */
+        }
+        .model-item .category-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Ensure button fits within image */
         }
         /* Responsive */
         @media (max-width: 768px) {
@@ -391,8 +419,14 @@
                 width: 90%;
             }
             .category-btn {
-                font-size: 1.2em;
-                padding: 5px 10px;
+                font-size: 1em; /* Smaller font for smaller screens */
+                padding: 4px 8px;
+            }
+            .model-item {
+                width: 50%; /* Maintain equal width */
+            }
+            .model-item img {
+                width: 100%;
             }
         }
         @media (max-width: 480px) {
@@ -414,8 +448,14 @@
                 width: 95%;
             }
             .category-btn {
-                font-size: 1em;
-                padding: 4px 8px;
+                font-size: 0.9em; /* Even smaller font for mobile */
+                padding: 3px 6px;
+            }
+            .model-item {
+                width: 50%; /* Maintain equal width */
+            }
+            .model-item img {
+                width: 100%;
             }
         }
     </style>
@@ -556,10 +596,9 @@
                 <button class="category-btn" id="clipsNinasBtn">CLIPS NIÑAS</button>
             </div>
         </div>
-       
 
         <!-- Modal -->
- <div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+<div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-content">
                 <span class="close-btn" aria-label="Cerrar modal">×</span>
                 <img id="modalImage" alt="" src="">
@@ -602,7 +641,7 @@
         </div>
 
         <!-- Clips Niñas Modal -->
- <div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
+<div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
             <div class="clips-ninas-modal-content">
                 <span class="close-btn" aria-label="Cerrar modal">×</span>
                 <h2 id="clipsNinasModalTitle">CLIPS NIÑAS</h2>
@@ -614,7 +653,7 @@
         </div>
     </div>
 
-<script>
+ <script>
         // Carousel functionality
         const slides = document.querySelector('.carousel .slides');
         const dots = document.querySelectorAll('.carousel .dots span');
@@ -927,6 +966,17 @@
                 clipsNinasModal.style.display = 'none';
                 clipsNinasModal.setAttribute('aria-hidden', 'true');
             }
+        });
+
+        // Make model section images clickable
+        const modelItems = document.querySelectorAll('.model-item');
+        modelItems.forEach(item => {
+            const img = item.querySelector('img');
+            const btn = item.querySelector('.category-btn');
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                btn.click(); // Trigger the button's click event
+            });
         });
 
         // Close modals on Escape key
