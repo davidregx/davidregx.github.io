@@ -25,9 +25,9 @@
             width: 100%;
             box-sizing: border-box;
         }
-        .header .logo {
-            font-size: 1.5em;
-            font-weight: bold;
+        .header .logo img {
+            height: 40px; /* Set logo height */
+            width: auto; /* Maintain aspect ratio */
         }
         .header nav ul {
             list-style: none;
