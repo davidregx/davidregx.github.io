@@ -479,7 +479,7 @@
                 <button class="add-to-cart" data-id="4">Agregar al carrito</button>
             </div>
             <div class="product" data-id="5" data-colors='[{"color": "#5dade2", "title": "Celeste"}, {"color": "#ebf5fb", "title": "Agua"}, {"color": "#FFFFFF", "title": "Blanco"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos acrílicos elegantes en tonos celestes.">
-                <img alt="Ganchos Acrílicos Color Celeste" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfQiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no"/>
+                <img alt="Ganchos Acrílicos Color Celeste" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfWiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no"/>
                 <p>Ganchos Acrílicos Color Celeste</p>
                 <p class="price">S/ 5.00</p>
                 <button class="add-to-cart" data-id="5">Agregar al carrito</button>
@@ -510,13 +510,13 @@
             </div>
             <!-- Categoría 2: Cristal -->
             <div class="product" data-id="14" data-colors='[]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Mini ganchitos florales para destacar tu peinado.">
-                <img alt="Par de mini ganchitos en forma de flor" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVcDqGO_EKNry0Eb-BkdsNH0V0lOhwW7AM5WEqFv7Gh9RNq0Vs2UjkmI2yY0CGgt5haYI5RgwRDHv-LMBqc5bvmX245QMyriwIoyJyniPQH9cJJ9iCC2fC8hY06M9BU9nAd6NhCLGVGCC34N=w2000-h2000-p-k-no"/>
+                <img alt="Par de mini ganchitos en forma de flor" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVcDqGO_EKNry0Eb-BkdsNH0V0lOhwW7AM5WEqz8IiNlbpTs2U3Io9_kt4yCGgt5haYI5RgwRDHv-LMBqc5bvmX245QMyriwIoyJyniPQH9cJJ9iCC2fC8hY06M9BU9nFd6NhCLGVGCC34N=w2000-h2000-p-k-no"/>
                 <p>Par de mini ganchitos en forma de flor</p>
                 <p class="price">S/ 3.00</p>
                 <button class="add-to-cart" data-id="14">Agregar al carrito</button>
             </div>
             <div class="product" data-id="15" data-colors='[]' data-rating="⭐⭐⭐☆☆ (3.5)" data-description="Ganchitos en forma de mariposa, perfectos para peinados infantiles.">
-                <img alt="Mini ganchitos en forma de mariposa" src="https://lh3.googleusercontent.com/gps-cs/AIky0YW1eFtqiwT_PM-xOZndQzQz2iVogh-XQVJclLEtgsh0i5wUGm9NvOCot9LJLfDmZE58abznArTin0EgjEMw3HuKeK9_9hoODK0kla3nM-GYGSvA8_xXCBmu_qiSuoHzgpSaO_2EtqXLAjnCs34l=w2000-h2000-p-k-no"/>
+                <img alt="Mini ganchitos en forma de mariposa" src="https://lh3.googleusercontent.com/gps-cs/AIky0YW1eFtqiwT_PM-xOZnd2iVogh-XQVJclLEtgsh0i5wUGm9NvOCot9LJLfDmZE58abznArTin0EgjEMw3HuKeK9_9hoODK0kla3nM-GYGSvA8_xXCBmu_qiSuoHzgpSaO_2EtqXLAjnCs34l=w2000-h2000-p-k-no"/>
                 <p>Mini ganchitos en forma de mariposa</p>
                 <p class="price">S/ 2.00</p>
                 <button class="add-to-cart" data-id="15">Agregar al carrito</button>
