@@ -1,335 +1,410 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TodoModa - Tienda Online con Carrito y Boleta + WhatsApp</title>
-<style>
-    /* --- Estilos originales TodoModa + carrito integrado --- */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #333;
-        background: #f9f9f9;
-    }
-    .container {
-        width: 100%;
-        margin: 0;
-        padding: 20px 20px 40px;
-        box-sizing: border-box;
-    }
-    /* Header */
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        border-bottom: 1px solid #ddd;
-    }
-    .header .logo img {
-        height: 100px;
-        width: auto;
-    }
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        margin: 0;
-        padding: 0;
-    }
-    nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-    }
-    .header .icons {
-        display: flex;
-        gap: 10px;
-    }
-    .header .icons img {
-        width: 20px;
-        height: 20px;
-    }
-
-    /* Carousel */
-  .carousel {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        margin: 20px 0;
-    }
-    .carousel .slides {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
-    .carousel .slide-container {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        position: relative;
-        flex-shrink: 0;
-    }
-    .carousel .slides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .carousel .banner-text {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #fff;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 5px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .carousel .banner-text:hover {
-        background: rgba(0, 0, 0, 0.7);
-    }
-    .carousel .dots {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 10px;
-    }
-    .carousel .dots span {
-        width: 10px;
-        height: 10px;
-        background-color: #bbb;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-    .carousel .dots span.active {
-        background-color: #333;
-    }
-
-    /* Products scroll horizontal */
- .products {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        margin: 20px 0;
-        padding: 0 20px;
-        width: 100%;
-        box-sizing: border-box;
-        gap: 5px;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: thin;
-        scrollbar-color: #bbb #f1f1f1;
-    }
-    .products::-webkit-scrollbar {
-        height: 8px;
-    }
-    .products::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-    .products::-webkit-scrollbar-thumb {
-        background: #bbb;
-        border-radius: 4px;
-    }
-    .product {
-        width: 200px;
-        min-width: 200px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        padding: 10px;
-        text-align: center;
-        position: relative;
-        cursor: pointer;
-        scroll-snap-align: start;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        user-select: none;
-    }
-    .product img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-        flex-shrink: 0;
-    }
-    .product p {
-        margin: 0;
-        font-weight: 600;
-        font-size: 14px;
-    }
-    .price {
-        font-weight: bold;
-        color: #444;
-        font-size: 15px;
-    }
-    /* Paleta de colores */
-    .color-palette {
-        display: flex;
-        justify-content: center;
-        gap: 6px;
-        flex-wrap: wrap;
-        margin-top: 4px;
-        margin-bottom: 8px;
-    }
-    .color-circle {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        border: 1.5px solid #ccc;
-        cursor: pointer;
-        transition: transform 0.2s, border-color 0.3s;
-        flex-shrink: 0;
-    }
-    .color-circle.selected {
-        border-color: #333;
-        transform: scale(1.2);
-    }
-    /* Botón agregar */
-    .add-to-cart {
-        background: #333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 10px;
-        width: 100%;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 14px;
-        transition: background 0.3s;
-        flex-shrink: 0;
-    }
-    .add-to-cart:hover:not(:disabled) {
-        background: #555;
-    }
-    .add-to-cart:disabled {
-        background: #999;
-        cursor: default;
-    }
-
-    /* Model Section (categorías con botones) */
- .model-section {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px 0;
-        width: 100%;
-        flex-wrap: nowrap;
-    }
-    .model-item {
-        position: relative;
-        text-align: center;
-        width: 50%;
-        max-width: none;
-    }
-    .model-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-        display: block;
-        cursor: pointer;
-    }
-    .model-item .category-btn {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #fff;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 4px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        border: none;
-        transition: background 0.3s;
-    }
-    .model-item .category-btn:hover {
-        background: rgba(0, 0, 0, 0.7);
-    }
-
-    /* Modal base */
-.modal, .view-all-modal, .clips-damas-modal, .clips-ninas-modal {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-        overflow-y: auto;
-    }
-    .modal-content, .view-all-modal-content, .clips-damas-modal-content, .clips-ninas-modal-content {
-        background: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        max-width: 90%;
-        width: 100%;
-        max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        box-sizing: border-box;
-    }
-    .modal-content img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-        margin-bottom: 15px;
-    }
-    .modal-content h3, .view-all-modal-content h2, .clips-damas-modal-content h2, .clips-ninas-modal-content h2 {
-        margin: 0 0 20px;
-        font-size: 1.5em;
-        text-align: center;
-    }
-    .search-container {
-        margin: 10px 0 20px;
-        text-align: center;
-    }
-    .search-input {
-        width: 80%;
-        max-width: 400px;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 1em;
-    }
-    .search-input:focus {
-        outline: none;
-        border-color: #333;
-    }
-    .view-all-products, .clips-damas-products, .clips-ninas-products {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-        padding: 0 10px;
-    }
-    .view-all-products .product, .clips-damas-products .product, .clips-ninas-products .product {
-        width: 100%;
-        min-width: unset;
-        cursor: pointer;
-    }
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.5em;
-        cursor: pointer;
-        color: #333;
-        user-select: none;
-        border: none;
-        background: none;
-    }
-    .close-btn:hover {
-        color: #000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoModa - Tienda Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            margin: 0;
+            padding: 20px 0;
+        }
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header .logo img {
+            height: 100px; /* Set logo height */
+            width: auto; /* Maintain aspect ratio */
+        }
+        .header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .header nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .header .icons {
+            display: flex;
+            gap: 10px;
+        }
+        .header .icons img {
+            width: 20px;
+            height: 20px;
+        }
+        /* Carousel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .carousel .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel .slide-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .carousel .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .carousel .banner-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .carousel .banner-text:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .carousel .dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .carousel .dots span {
+            width: 10px;
+            height: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel .dots span.active {
+            background-color: #333;
+        }
+        /* Products */
+        .products {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            margin: 20px 0;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+            gap: 5px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #bbb #f1f1f1;
+        }
+        .products::-webkit-scrollbar {
+            height: 8px;
+        }
+        .products::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .products::-webkit-scrollbar-thumb {
+            background: #bbb;
+            border-radius: 4px;
+        }
+        .product {
+            width: 200px;
+            min-width: 200px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+            scroll-snap-align: start;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+        }
+        .product p {
+            margin: 5px 0;
+        }
+        .product .price {
+            font-weight: bold;
+        }
+        .product .add-to-cart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 80px);
+            background: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-size: 0.9em;
+            width: 90%;
+        }
+        .product:hover .add-to-cart {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        .product .add-to-cart:hover {
+            background: #555;
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .modal-content h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+        }
+        .modal-content .description {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .modal-content .rating {
+            margin: 10px 0;
+            color: #f1c40f;
+        }
+        .modal-content .price {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .modal-content .color-palette {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .modal-content .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .modal-content .color-circle.selected {
+            transform: scale(1.2);
+            border: 2px solid #333;
+        }
+        .modal-content .quantity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .modal-content .quantity-btn {
+            background: #333;
+            color: #fff;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .modal-content .quantity-btn:hover {
+            background: #555;
+        }
+        .modal-content .quantity-input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .modal-content .btn-add-cart {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .modal-content .btn-add-cart:hover {
+            background: #555;
+        }
+        .modal-content .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #333;
+        }
+        /* View All and Category Modals */
+        .view-all-modal, .clips-damas-modal, .clips-ninas-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .view-all-modal-content, .clips-damas-modal-content, .clips-ninas-modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 90%;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .view-all-modal-content h2, .clips-damas-modal-content h2, .clips-ninas-modal-content h2 {
+            margin: 0 0 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .search-container {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .search-input {
+            width: 80%;
+            max-width: 400px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: #333;
+        }
+        .view-all-products, .clips-damas-products, .clips-ninas-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0 10px;
+        }
+        .view-all-products .product, .clips-damas-products .product, .clips-ninas-products .product {
+            width: 100%;
+            min-width: unset;
+        }
+        .view-all-modal-content .close-btn, .clips-damas-modal-content .close-btn, .clips-ninas-modal-content .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #333;
+        }
+        /* Category Buttons */
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .category-btn {
+            font-size: 1.2em; /* Reduced font size */
+            font-weight: bold;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4px 10px; /* Smaller padding */
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        .category-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        /* Model Section */
+        .model-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            width: 100%;
+            flex-wrap: nowrap; /* Prevent wrapping to keep images side by side */
+        }
+        .model-item {
+            position: relative;
+            text-align: center;
+            width: 50%; /* Each item takes half the container width */
+            max-width: none; /* Remove max-width to allow full expansion */
+        }
+        .model-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            cursor: pointer; /* Indicate clickability */
+        }
+        .model-item .category-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Ensure button fits within image */
+        }
 
     /* Carrito flotante */
- #cart-button {
+   #cart-button {
         position: fixed;
         top: 20px;
         right: 20px;
@@ -511,90 +586,83 @@
         z-index: 100001;
     }
 
-    /* Responsive */
-   @media (max-width: 768px) {
-        .product {
-            width: 150px;
-            min-width: 150px;
+
+        /* Responsive */
+  @media (max-width: 768px) {
+            .product {
+                width: 150px;
+                min-width: 150px;
+            }
+            .product .add-to-cart {
+                padding: 8px 15px;
+                font-size: 0.8em;
+            }
+            .view-all-products, .clips-damas-products, .clips-ninas-products {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .search-input {
+                width: 90%;
+            }
+            .category-btn {
+                font-size: 1em; /* Smaller font for smaller screens */
+                padding: 4px 8px;
+            }
+            .model-item {
+                width: 50%; /* Maintain equal width */
+            }
+            .model-item img {
+                width: 100%;
+            }
         }
-        .view-all-products, .clips-damas-products, .clips-ninas-products {
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        @media (max-width: 480px) {
+            .product {
+                width: 120px;
+                min-width: 120px;
+            }
+            .product p {
+                font-size: 0.9em;
+            }
+            .product .add-to-cart {
+                padding: 6px 10px;
+                font-size: 0.7em;
+            }
+            .view-all-products, .clips-damas-products, .clips-ninas-products {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            .search-input {
+                width: 95%;
+            }
+            .category-btn {
+                font-size: 0.9em; /* Even smaller font for mobile */
+                padding: 3px 6px;
+            }
+            .model-item {
+                width: 50%; /* Maintain equal width */
+            }
+            .model-item img {
+                width: 100%;
+            }
         }
-        .search-input {
-            width: 90%;
-        }
-        .category-btn {
-            font-size: 1em;
-            padding: 4px 8px;
-        }
-        .model-item {
-            width: 50%;
-        }
-        .model-item img {
-            width: 100%;
-        }
-    }
-    @media (max-width: 480px) {
-        .product {
-            width: 120px;
-            min-width: 120px;
-        }
-        .product p {
-            font-size: 0.9em;
-        }
-        .view-all-products, .clips-damas-products, .clips-ninas-products {
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        }
-        .search-input {
-            width: 95%;
-        }
-        .category-btn {
-            font-size: 0.9em;
-            padding: 3px 6px;
-        }
-        .model-item {
-            width: 50%;
-        }
-        .model-item img {
-            width: 100%;
-        }
-    }
-</style>
+        </style>
 </head>
-<body>
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">
-            <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXTTJyLqUwcNn1yduyV6i82lmL4ukvEZp-ePVd_P_Wa_y1VGwXNJOPpVxro2IxUZ55xE4oEndno5MItmJf7wjkFn0RYFCLtB4bOG2AHYHrupD1pkX8cf3jOUBHNUJOFEYOrwzTGEMSJj6j8=w1000-h1000-p-k-no" alt="TodoModa Logo" />
-        </div>
-        <nav>
-            <ul>
-                <!-- Puedes añadir links si quieres -->
-            </ul>
-        </nav>
-        <div class="icons">
-            <!-- Iconos si quieres -->
-        </div>
-    </div>
+<body>     <div class="container">         <!-- Header -->         <div class="header">             <div class="logo">                 <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXTTJyLqUwcNn1yduyV6i82lmL4ukvEZp-ePVd_P_Wa_y1VGwXNJOPpVxro2IxUZ55xE4oEndno5MItmJf7wjkFn0RYFCLtB4bOG2AHYHrupD1pkX8cf3jOUBHNUJOFEYOrwzTGEMSJj6j8=w1000-h1000-p-k-no" alt="TodoModa Logo">             </div>             <nav>                 <ul>                 </ul>             </nav>             <div class="icons">             </div>         </div>
 
-    <!-- Carousel -->
- <div class="carousel" aria-label="Carrusel de banners">
-        <div class="slides">
-            <div class="slide-container">
-                <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner 1">
+        <!-- Carousel -->
+ <div class="carousel">
+            <div class="slides">
+                <div class="slide-container">
+                    <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner 1">
+                </div>
+                <div class="slide-container">
+                    <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner 2">
+                </div>
             </div>
-            <div class="slide-container">
-                <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner 2">
+            <div class="banner-text" id="viewAllBtn">VER TODO</div>
+            <div class="dots">
+                <span class="active"></span>
+                <span></span>
             </div>
         </div>
-        <div class="banner-text" id="viewAllBtn" tabindex="0" role="button" aria-label="Ver todos los productos">VER TODO</div>
-        <div class="dots" role="tablist">
-            <span class="active" role="tab" tabindex="0" aria-selected="true"></span>
-            <span role="tab" tabindex="0" aria-selected="false"></span>
-        </div>
-    </div>
-
 
         <!-- Product Listings -->
 <div class="products">
@@ -703,20 +771,24 @@
             </div>
         </div>
 
-
-
-    <!-- Model Section -->
-<div class="model-section">
-        <div class="model-item">
-            <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUGuPXaSC1mPGUKkOYa5z7JyvELvbIy0B4-WtB3tMHIKm2D6Sbg1cTWwU0MsxRJR_5lKb5t1MnVOStZk-tNPdUudQ6-h7M7ueR4l8N5IgmuOrhlNRMi0B_uohBDRomdzQUIHP7y244Zc150=w1024-h1024-p-k-no" alt="Bufandas" />
-            <button class="category-btn" id="clipsDamasBtn">CLIPS DAMAS</button>
+        <!-- Modal -->
+ <div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-content">
+                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <img id="modalImage" alt="" src="">
+                <h3 id="modalTitle"></h3>
+                <p class="description" id="modalDescription"></p>
+                <div class="rating" id="modalRating"></div>
+                <p class="price" id="modalPrice"></p>
+                <div class="color-palette" id="modalColors"></div>
+                <div class="quantity">
+                    <button class="quantity-btn" id="decreaseQty" aria-label="Disminuir cantidad">−</button>
+                    <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" aria-label="Cantidad">
+                    <button class="quantity-btn" id="increaseQty" aria-label="Aumentar cantidad">+</button>
+                </div>
+                <button class="btn-add-cart" id="modalAddCart">Agregar al carrito</button>
+            </div>
         </div>
-        <div class="model-item">
-            <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUDER3L7ISerfG6uiIU8ISdgKkibO-SXwGGNL1azb_TJ0qYIN3T7LsJyU-qc9-kQtucnOkLr5rPYtWt0fW0UL8-7RDD46bg_0JnGLkD8RSfQvGydDvq6L_ZLBoj4hnIhwHB3CEx1fPtJ58O=w1024-h1024-p-k-no" alt="Carteras" />
-            <button class="category-btn" id="clipsNinasBtn">CLIPS NIÑAS</button>
-        </div>
-    </div>
-</div>
 
 <!-- Botón flotante abrir/cerrar carrito -->
 <div id="cart-button" title="Abrir carrito" aria-label="Abrir carrito de compras">🛒</div>
@@ -736,44 +808,42 @@
     <div id="boleta-content" tabindex="0"></div>
 </div>
 
-<!-- View All Products Modal -->
+        <!-- View All Products Modal -->
 <div class="view-all-modal" id="viewAllModal" role="dialog" aria-labelledby="viewAllModalTitle" aria-hidden="true">
-    <div class="view-all-modal-content">
-        <button class="close-btn" aria-label="Cerrar modal">&times;</button>
-        <h2 id="viewAllModalTitle">Todos los Productos</h2>
-        <div class="search-container">
-            <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." aria-label="Buscar productos" />
+            <div class="view-all-modal-content">
+                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <h2 id="viewAllModalTitle">Todos los Productos</h2>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." aria-label="Buscar productos">
+                </div>
+                <div class="view-all-products" id="viewAllProducts"></div>
+            </div>
         </div>
-        <div class="view-all-products" id="viewAllProducts"></div>
-    </div>
-</div>
 
-<!-- Clips Damas Modal -->
-<div class="clips-damas-modal" id="clipsDamasModal" role="dialog" aria-labelledby="clipsDamasModalTitle" aria-hidden="true">
-    <div class="clips-damas-modal-content">
-        <button class="close-btn" aria-label="Cerrar modal">&times;</button>
-        <h2 id="clipsDamasModalTitle">CLIPS DAMAS</h2>
-        <div class="search-container">
-            <input type="text" class="search-input" id="clipsDamasSearch" placeholder="Buscar en Clips Damas..." aria-label="Buscar en Clips Damas" />
+        <!-- Clips Damas Modal -->
+ <div class="clips-damas-modal" id="clipsDamasModal" role="dialog" aria-labelledby="clipsDamasModalTitle" aria-hidden="true">
+            <div class="clips-damas-modal-content">
+                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <h2 id="clipsDamasModalTitle">CLIPS DAMAS</h2>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="clipsDamasSearch" placeholder="Buscar en Clips Damas..." aria-label="Buscar en Clips Damas">
+                </div>
+                <div class="clips-damas-products" id="clipsDamasProducts"></div>
+            </div>
         </div>
-        <div class="clips-damas-products" id="clipsDamasProducts"></div>
-    </div>
-</div>
 
-<!-- Clips Niñas Modal -->
-<div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
-    <div class="clips-ninas-modal-content">
-        <button class="close-btn" aria-label="Cerrar modal">&times;</button>
-        <h2 id="clipsNinasModalTitle">CLIPS NIÑAS</h2>
-        <div class="search-container">
-            <input type="text" class="search-input" id="clipsNinasSearch" placeholder="Buscar en Clips Niñas..." aria-label="Buscar en Clips Niñas" />
+        <!-- Clips Niñas Modal -->
+ <div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
+            <div class="clips-ninas-modal-content">
+                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <h2 id="clipsNinasModalTitle">CLIPS NIÑAS</h2>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="clipsNinasSearch" placeholder="Buscar en Clips Niñas..." aria-label="Buscar en Clips Niñas">
+                </div>
+                <div class="clips-ninas-products" id="clipsNinasProducts"></div>
+            </div>
         </div>
-        <div class="clips-ninas-products" id="clipsNinasProducts"></div>
     </div>
-</div>
-
-<!-- Loading Spinner -->
-<div id="loading-spinner" role="alert" aria-live="assertive">Cargando...</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
@@ -1046,237 +1116,348 @@ document.getElementById('boleta-modal').addEventListener('click', e => {
 /* === Inicialización carrito al cargar === */
 updateCart();
 
-/* === Funciones y eventos para el carousel === */
-const slides = document.querySelector('.carousel .slides');
-const dots = document.querySelectorAll('.carousel .dots span');
-let currentIndex = 0;
-function showSlide(index) {
-    slides.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-    });
-}
-dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-        currentIndex = i;
-        showSlide(currentIndex);
-    });
-    dot.addEventListener('keydown', e => {
-        if(e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            dot.click();
-        }
-    });
-});
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % dots.length;
-    showSlide(currentIndex);
-}, 5000);
+        // Carousel functionality
+        const slides = document.querySelector('.carousel .slides');
+        const dots = document.querySelectorAll('.carousel .dots span');
+        let currentIndex = 0;
 
-/* === Modal "Ver Todo" === */
-const viewAllModal = document.getElementById('viewAllModal');
-const viewAllBtn = document.getElementById('viewAllBtn');
-const viewAllProductsContainer = document.getElementById('viewAllProducts');
-const viewAllCloseBtn = viewAllModal.querySelector('.close-btn');
-const productSearch = document.getElementById('productSearch');
-
-function cloneProductWithColorSelection(prod) {
-    const clone = prod.cloneNode(true);
-    // Reset color selection and buttons
-    const colors = clone.querySelectorAll('.color-circle');
-    colors.forEach(c => {
-        c.classList.remove('selected');
-        c.setAttribute('aria-checked', 'false');
-        c.addEventListener('click', () => {
-            colors.forEach(cc => {
-                cc.classList.remove('selected');
-                cc.setAttribute('aria-checked', 'false');
+        function showSlide(index) {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
             });
-            c.classList.add('selected');
-            c.setAttribute('aria-checked', 'true');
-            updateAddButtons();
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                showSlide(currentIndex);
+            });
         });
-        c.addEventListener('keydown', e => {
-            if(e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                c.click();
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % dots.length;
+            showSlide(currentIndex);
+        }, 5000);
+
+        // Modal functionality
+        const modal = document.getElementById('colorModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalRating = document.getElementById('modalRating');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalColors = document.getElementById('modalColors');
+        const modalAddCart = document.getElementById('modalAddCart');
+        const decreaseQty = document.getElementById('decreaseQty');
+        const increaseQty = document.getElementById('increaseQty');
+        const quantityInput = document.getElementById('quantityInput');
+        const closeBtn = document.querySelector('.modal .close-btn');
+
+        let selectedColor = null;
+
+        function openProductModal(product) {
+            const id = product.getAttribute('data-id');
+            const name = product.querySelector('p').textContent;
+            const price = product.querySelector('.price').textContent;
+            const image = product.querySelector('img').src;
+            const alt = product.querySelector('img').alt;
+            const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
+            const rating = product.getAttribute('data-rating');
+            const description = product.getAttribute('data-description');
+
+            modalImage.src = image;
+            modalImage.alt = alt;
+            modalTitle.textContent = name;
+            modalDescription.textContent = description;
+            modalRating.textContent = rating;
+            modalPrice.textContent = price;
+            modalAddCart.setAttribute('data-id', id);
+            modalAddCart.setAttribute('data-name', name);
+            modalAddCart.setAttribute('data-price', price.replace('S/ ', ''));
+
+            modalColors.innerHTML = colors.map(color => 
+                `<span class="color-circle" style="background-color: ${color.color};" title="${color.title}" data-color="${color.color}"></span>`
+            ).join('');
+
+            quantityInput.value = 1;
+            selectedColor = null;
+            modalColors.querySelectorAll('.color-circle').forEach(circle => {
+                circle.classList.remove('selected');
+                circle.addEventListener('click', () => {
+                    modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+                    circle.classList.add('selected');
+                    selectedColor = circle.getAttribute('data-color');
+                });
+            });
+
+            modal.style.display = 'flex';
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        // Quantity controls
+        decreaseQty.addEventListener('click', () => {
+            let qty = parseInt(quantityInput.value);
+            if (qty > 1) quantityInput.value = qty - 1;
+        });
+
+        increaseQty.addEventListener('click', () => {
+            let qty = parseInt(quantityInput.value);
+            quantityInput.value = qty + 1;
+        });
+
+        quantityInput.addEventListener('input', () => {
+            if (quantityInput.value < 1) quantityInput.value = 1;
+        });
+
+        // Add to cart (placeholder functionality)
+        modalAddCart.addEventListener('click', () => {
+            const id = modalAddCart.getAttribute('data-id');
+            const name = modalAddCart.getAttribute('data-name');
+            const price = modalAddCart.getAttribute('data-price');
+            const quantity = quantityInput.value;
+            alert(`Añadido al carrito: ${name}, Cantidad: ${quantity}, Color: ${selectedColor || 'Ninguno'}, Precio: S/ ${(price * quantity).toFixed(2)}`);
+        });
+
+        // Close product modal
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
             }
         });
-    });
-    const btn = clone.querySelector('.add-to-cart');
-    btn.disabled = true;
-    btn.textContent = 'Agregar al carrito';
-    btn.addEventListener('click', e => {
-        const prodElem = e.target.closest('.product');
-        const id = prodElem.dataset.id;
-        const name = prodElem.dataset.name;
-        const price = parseFloat(prodElem.dataset.price);
-        const selectedColorCircle = prodElem.querySelector('.color-circle.selected');
-        if (!selectedColorCircle) {
-            alert('Por favor, seleccione un color.');
-            return;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Product event listeners
+        function attachProductListeners(products) {
+            products.forEach(product => {
+                product.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
+                    openProductModal(product);
+                });
+                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openProductModal(product);
+                });
+            });
         }
-        const color = selectedColorCircle.getAttribute('data-color');
-        const colorName = selectedColorCircle.getAttribute('data-colorname');
-        addToCart(id, name, price, color, colorName);
-    });
-    return clone;
-}
 
-function updateViewAllProducts(searchTerm = '') {
-    viewAllProductsContainer.innerHTML = '';
-    const allProducts = document.querySelectorAll('.products .product');
-    const filtered = Array.from(allProducts).filter(p => {
-        const name = p.dataset.name.toLowerCase();
-        return name.includes(searchTerm.toLowerCase());
-    });
-    filtered.forEach(p => {
-        const clone = cloneProductWithColorSelection(p);
-        viewAllProductsContainer.appendChild(clone);
-    });
-}
+        const allProducts = document.querySelectorAll('.products .product');
+        attachProductListeners(allProducts);
 
-viewAllBtn.addEventListener('click', () => {
-    productSearch.value = '';
-    updateViewAllProducts();
-    viewAllModal.style.display = 'flex';
-    viewAllModal.setAttribute('aria-hidden', 'false');
-    productSearch.focus();
-});
-viewAllCloseBtn.addEventListener('click', () => {
-    viewAllModal.style.display = 'none';
-    viewAllModal.setAttribute('aria-hidden', 'true');
-});
-viewAllModal.addEventListener('click', e => {
-    if (e.target === viewAllModal) {
-        viewAllModal.style.display = 'none';
-        viewAllModal.setAttribute('aria-hidden', 'true');
-    }
-});
-productSearch.addEventListener('input', () => {
-    updateViewAllProducts(productSearch.value);
-});
+        // View All Products Modal functionality
+        const viewAllModal = document.getElementById('viewAllModal');
+        const viewAllBtn = document.getElementById('viewAllBtn');
+        const viewAllProductsContainer = document.getElementById('viewAllProducts');
+        const viewAllCloseBtn = document.querySelector('.view-all-modal .close-btn');
+        const productSearch = document.getElementById('productSearch');
 
-/* === Clips Damas Modal === */
-const clipsDamasModal = document.getElementById('clipsDamasModal');
-const clipsDamasBtn = document.getElementById('clipsDamasBtn');
-const clipsDamasProductsContainer = document.getElementById('clipsDamasProducts');
-const clipsDamasCloseBtn = clipsDamasModal.querySelector('.close-btn');
-const clipsDamasSearch = document.getElementById('clipsDamasSearch');
+        function updateViewAllProducts(searchTerm = '') {
+            viewAllProductsContainer.innerHTML = '';
+            const filteredProducts = Array.from(allProducts).filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                return name.includes(searchTerm.toLowerCase());
+            });
 
-function updateClipsDamasProducts(searchTerm = '') {
-    clipsDamasProductsContainer.innerHTML = '';
-    const allProducts = document.querySelectorAll('.products .product');
-    const damasProducts = Array.from(allProducts).filter(p => {
-        const id = parseInt(p.dataset.id);
-        return id >= 1 && id <= 9; // Ajusta rango según tus productos Clips Damas
-    });
-    const filtered = damasProducts.filter(p => {
-        const name = p.dataset.name.toLowerCase();
-        return name.includes(searchTerm.toLowerCase());
-    });
-    filtered.forEach(p => {
-        const clone = cloneProductWithColorSelection(p);
-        clipsDamasProductsContainer.appendChild(clone);
-    });
-}
-clipsDamasBtn.addEventListener('click', () => {
-    clipsDamasSearch.value = '';
-    updateClipsDamasProducts();
-    clipsDamasModal.style.display = 'flex';
-    clipsDamasModal.setAttribute('aria-hidden', 'false');
-    clipsDamasSearch.focus();
-});
-clipsDamasCloseBtn.addEventListener('click', () => {
-    clipsDamasModal.style.display = 'none';
-    clipsDamasModal.setAttribute('aria-hidden', 'true');
-});
-clipsDamasModal.addEventListener('click', e => {
-    if (e.target === clipsDamasModal) {
-        clipsDamasModal.style.display = 'none';
-        clipsDamasModal.setAttribute('aria-hidden', 'true');
-    }
-});
-clipsDamasSearch.addEventListener('input', () => {
-    updateClipsDamasProducts(clipsDamasSearch.value);
-});
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                viewAllProductsContainer.appendChild(productClone);
+            });
 
-/* === Clips Niñas Modal === */
-const clipsNinasModal = document.getElementById('clipsNinasModal');
-const clipsNinasBtn = document.getElementById('clipsNinasBtn');
-const clipsNinasProductsContainer = document.getElementById('clipsNinasProducts');
-const clipsNinasCloseBtn = clipsNinasModal.querySelector('.close-btn');
-const clipsNinasSearch = document.getElementById('clipsNinasSearch');
+            attachProductListeners(viewAllProductsContainer.querySelectorAll('.product'));
+        }
 
-function updateClipsNinasProducts(searchTerm = '') {
-    clipsNinasProductsContainer.innerHTML = '';
-    const allProducts = document.querySelectorAll('.products .product');
-    const ninasProducts = Array.from(allProducts).filter(p => {
-        const id = parseInt(p.dataset.id);
-        return id >= 14 && id <= 19; // Ajusta rango según tus productos Clips Niñas
-    });
-    const filtered = ninasProducts.filter(p => {
-        const name = p.dataset.name.toLowerCase();
-        return name.includes(searchTerm.toLowerCase());
-    });
-    filtered.forEach(p => {
-        const clone = cloneProductWithColorSelection(p);
-        clipsNinasProductsContainer.appendChild(clone);
-    });
-}
-clipsNinasBtn.addEventListener('click', () => {
-    clipsNinasSearch.value = '';
-    updateClipsNinasProducts();
-    clipsNinasModal.style.display = 'flex';
-    clipsNinasModal.setAttribute('aria-hidden', 'false');
-    clipsNinasSearch.focus();
-});
-clipsNinasCloseBtn.addEventListener('click', () => {
-    clipsNinasModal.style.display = 'none';
-    clipsNinasModal.setAttribute('aria-hidden', 'true');
-});
-clipsNinasModal.addEventListener('click', e => {
-    if (e.target === clipsNinasModal) {
-        clipsNinasModal.style.display = 'none';
-        clipsNinasModal.setAttribute('aria-hidden', 'true');
-    }
-});
-clipsNinasSearch.addEventListener('input', () => {
-    updateClipsNinasProducts(clipsNinasSearch.value);
-});
+        viewAllBtn.addEventListener('click', () => {
+            productSearch.value = '';
+            updateViewAllProducts();
+            viewAllModal.style.display = 'flex';
+            viewAllModal.setAttribute('aria-hidden', 'false');
+            productSearch.focus();
+        });
 
-/* === Model Section imágenes clickables === */
-document.querySelectorAll('.model-item').forEach(item => {
-    const img = item.querySelector('img');
-    const btn = item.querySelector('.category-btn');
-    img.addEventListener('click', (e) => {
-        e.preventDefault();
-        btn.click();
-    });
-});
+        productSearch.addEventListener('input', () => {
+            updateViewAllProducts(productSearch.value);
+        });
 
-/* === Cerrar modales con Escape === */
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        if (viewAllModal.style.display === 'flex') {
+        viewAllCloseBtn.addEventListener('click', () => {
             viewAllModal.style.display = 'none';
             viewAllModal.setAttribute('aria-hidden', 'true');
+        });
+
+        viewAllModal.addEventListener('click', (e) => {
+            if (e.target === viewAllModal) {
+                viewAllModal.style.display = 'none';
+                viewAllModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Clips Damas Modal functionality
+        const clipsDamasModal = document.getElementById('clipsDamasModal');
+        const clipsDamasBtn = document.getElementById('clipsDamasBtn');
+        const clipsDamasProductsContainer = document.getElementById('clipsDamasProducts');
+        const clipsDamasCloseBtn = document.querySelector('.clips-damas-modal .close-btn');
+        const clipsDamasSearch = document.getElementById('clipsDamasSearch');
+
+        function updateClipsDamasProducts(searchTerm = '') {
+            clipsDamasProductsContainer.innerHTML = '';
+            const damasProducts = Array.from(allProducts).filter(product => {
+                const id = parseInt(product.getAttribute('data-id'));
+                return id >= 1 && id <= 9;
+            });
+            const filteredProducts = damasProducts.filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                return name.includes(searchTerm.toLowerCase());
+            });
+
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                clipsDamasProductsContainer.appendChild(productClone);
+            });
+
+            attachProductListeners(clipsDamasProductsContainer.querySelectorAll('.product'));
+            clipsDamasProductsContainer.querySelectorAll('.product').forEach(product => {
+                product.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
+                    clipsDamasModal.style.display = 'none';
+                    clipsDamasModal.setAttribute('aria-hidden', 'true');
+                    openProductModal(product);
+                });
+                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    clipsDamasModal.style.display = 'none';
+                    clipsDamasModal.setAttribute('aria-hidden', 'true');
+                    openProductModal(product);
+                });
+            });
         }
-        if (clipsDamasModal.style.display === 'flex') {
+
+        clipsDamasBtn.addEventListener('click', () => {
+            clipsDamasSearch.value = '';
+            updateClipsDamasProducts();
+            clipsDamasModal.style.display = 'flex';
+            clipsDamasModal.setAttribute('aria-hidden', 'false');
+            clipsDamasSearch.focus();
+        });
+
+        clipsDamasSearch.addEventListener('input', () => {
+            updateClipsDamasProducts(clipsDamasSearch.value);
+        });
+
+        clipsDamasCloseBtn.addEventListener('click', () => {
             clipsDamasModal.style.display = 'none';
             clipsDamasModal.setAttribute('aria-hidden', 'true');
+        });
+
+        clipsDamasModal.addEventListener('click', (e) => {
+            if (e.target === clipsDamasModal) {
+                clipsDamasModal.style.display = 'none';
+                clipsDamasModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Clips Niñas Modal functionality
+        const clipsNinasModal = document.getElementById('clipsNinasModal');
+        const clipsNinasBtn = document.getElementById('clipsNinasBtn');
+        const clipsNinasProductsContainer = document.getElementById('clipsNinasProducts');
+        const clipsNinasCloseBtn = document.querySelector('.clips-ninas-modal .close-btn');
+        const clipsNinasSearch = document.getElementById('clipsNinasSearch');
+
+        function updateClipsNinasProducts(searchTerm = '') {
+            clipsNinasProductsContainer.innerHTML = '';
+            const ninasProducts = Array.from(allProducts).filter(product => {
+                const id = parseInt(product.getAttribute('data-id'));
+                return id >= 14 && id <= 19;
+            });
+            const filteredProducts = ninasProducts.filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                return name.includes(searchTerm.toLowerCase());
+            });
+
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                clipsNinasProductsContainer.appendChild(productClone);
+            });
+
+            attachProductListeners(clipsNinasProductsContainer.querySelectorAll('.product'));
+            clipsNinasProductsContainer.querySelectorAll('.product').forEach(product => {
+                product.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
+                    clipsNinasModal.style.display = 'none';
+                    clipsNinasModal.setAttribute('aria-hidden', 'true');
+                    openProductModal(product);
+                });
+                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    clipsNinasModal.style.display = 'none';
+                    clipsNinasModal.setAttribute('aria-hidden', 'true');
+                    openProductModal(product);
+                });
+            });
         }
-        if (clipsNinasModal.style.display === 'flex') {
+
+        clipsNinasBtn.addEventListener('click', () => {
+            clipsNinasSearch.value = '';
+            updateClipsNinasProducts();
+            clipsNinasModal.style.display = 'flex';
+            clipsNinasModal.setAttribute('aria-hidden', 'false');
+            clipsNinasSearch.focus();
+        });
+
+        clipsNinasSearch.addEventListener('input', () => {
+            updateClipsNinasProducts(clipsNinasSearch.value);
+        });
+
+        clipsNinasCloseBtn.addEventListener('click', () => {
             clipsNinasModal.style.display = 'none';
             clipsNinasModal.setAttribute('aria-hidden', 'true');
-        }
-        const boletaModal = document.getElementById('boleta-modal');
-        if(boletaModal.style.display === 'flex'){
-            boletaModal.style.display = 'none';
-        }
-    }
-});
-</script>
+        });
+
+        clipsNinasModal.addEventListener('click', (e) => {
+            if (e.target === clipsNinasModal) {
+                clipsNinasModal.style.display = 'none';
+                clipsNinasModal.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Make model section images clickable
+        const modelItems = document.querySelectorAll('.model-item');
+        modelItems.forEach(item => {
+            const img = item.querySelector('img');
+            const btn = item.querySelector('.category-btn');
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                btn.click(); // Trigger the button's click event
+            });
+        });
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (viewAllModal.style.display === 'flex') {
+                    viewAllModal.style.display = 'none';
+                    viewAllModal.setAttribute('aria-hidden', 'true');
+                }
+                if (clipsDamasModal.style.display === 'flex') {
+                    clipsDamasModal.style.display = 'none';
+                    clipsDamasModal.setAttribute('aria-hidden', 'true');
+                }
+                if (clipsNinasModal.style.display === 'flex') {
+                    clipsNinasModal.style.display = 'none';
+                    clipsNinasModal.setAttribute('aria-hidden', 'true');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
