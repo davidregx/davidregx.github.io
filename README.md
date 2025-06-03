@@ -1,483 +1,600 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TodoModa - Tienda Online</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            width: 100%;
-            margin: 0;
-            padding: 20px 0;
-        }
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ddd;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .header .logo img {
-            height: 100px; /* Set logo height */
-            width: auto; /* Maintain aspect ratio */
-        }
-        .header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
-        }
-        .header nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-        .header .icons {
-            display: flex;
-            gap: 10px;
-        }
-        .header .icons img {
-            width: 20px;
-            height: 20px;
-        }
-        /* Carousel */
-        .carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-        .carousel .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel .slide-container {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            position: relative;
-            flex-shrink: 0;
-        }
-        .carousel .slides img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .carousel .banner-text {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .carousel .banner-text:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .carousel .dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-        .carousel .dots span {
-            width: 10px;
-            height: 10px;
-            background-color: #bbb;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .carousel .dots span.active {
-            background-color: #333;
-        }
-        /* Products */
-        .products {
-            display: flex;
-            flex-direction: row;
-            overflow-x: auto;
-            margin: 20px 0;
-            padding: 0 20px;
-            width: 100%;
-            box-sizing: border-box;
-            gap: 5px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: #bbb #f1f1f1;
-        }
-        .products::-webkit-scrollbar {
-            height: 8px;
-        }
-        .products::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .products::-webkit-scrollbar-thumb {
-            background: #bbb;
-            border-radius: 4px;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TodoModa - Tienda Online con Carrito y Boleta + WhatsApp</title>
+<style>
+    /* --- Estilos originales TodoModa + carrito integrado --- */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background: #f9f9f9;
+    }
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 20px 20px 40px;
+        box-sizing: border-box;
+    }
+    /* Header */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .header .logo img {
+        height: 100px;
+        width: auto;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+    .header .icons {
+        display: flex;
+        gap: 10px;
+    }
+    .header .icons img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Carousel */
+  .carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        margin: 20px 0;
+    }
+    .carousel .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    .carousel .slide-container {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        position: relative;
+        flex-shrink: 0;
+    }
+    .carousel .slides img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .carousel .banner-text {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .carousel .banner-text:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+    .carousel .dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+    }
+    .carousel .dots span {
+        width: 10px;
+        height: 10px;
+        background-color: #bbb;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .carousel .dots span.active {
+        background-color: #333;
+    }
+
+    /* Products scroll horizontal */
+ .products {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        margin: 20px 0;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+        gap: 5px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: #bbb #f1f1f1;
+    }
+    .products::-webkit-scrollbar {
+        height: 8px;
+    }
+    .products::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    .products::-webkit-scrollbar-thumb {
+        background: #bbb;
+        border-radius: 4px;
+    }
+    .product {
+        width: 200px;
+        min-width: 200px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        padding: 10px;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        user-select: none;
+    }
+    .product img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        flex-shrink: 0;
+    }
+    .product p {
+        margin: 0;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .price {
+        font-weight: bold;
+        color: #444;
+        font-size: 15px;
+    }
+    /* Paleta de colores */
+    .color-palette {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+        margin-bottom: 8px;
+    }
+    .color-circle {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1.5px solid #ccc;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.3s;
+        flex-shrink: 0;
+    }
+    .color-circle.selected {
+        border-color: #333;
+        transform: scale(1.2);
+    }
+    /* Botón agregar */
+    .add-to-cart {
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 10px;
+        width: 100%;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition: background 0.3s;
+        flex-shrink: 0;
+    }
+    .add-to-cart:hover:not(:disabled) {
+        background: #555;
+    }
+    .add-to-cart:disabled {
+        background: #999;
+        cursor: default;
+    }
+
+    /* Model Section (categorías con botones) */
+ .model-section {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+    .model-item {
+        position: relative;
+        text-align: center;
+        width: 50%;
+        max-width: none;
+    }
+    .model-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        display: block;
+        cursor: pointer;
+    }
+    .model-item .category-btn {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 4px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        transition: background 0.3s;
+    }
+    .model-item .category-btn:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Modal base */
+.modal, .view-all-modal, .clips-damas-modal, .clips-ninas-modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+    }
+    .modal-content, .view-all-modal-content, .clips-damas-modal-content, .clips-ninas-modal-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 90%;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-sizing: border-box;
+    }
+    .modal-content img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+    .modal-content h3, .view-all-modal-content h2, .clips-damas-modal-content h2, .clips-ninas-modal-content h2 {
+        margin: 0 0 20px;
+        font-size: 1.5em;
+        text-align: center;
+    }
+    .search-container {
+        margin: 10px 0 20px;
+        text-align: center;
+    }
+    .search-input {
+        width: 80%;
+        max-width: 400px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+    .search-input:focus {
+        outline: none;
+        border-color: #333;
+    }
+    .view-all-products, .clips-damas-products, .clips-ninas-products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 0 10px;
+    }
+    .view-all-products .product, .clips-damas-products .product, .clips-ninas-products .product {
+        width: 100%;
+        min-width: unset;
+        cursor: pointer;
+    }
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #333;
+        user-select: none;
+        border: none;
+        background: none;
+    }
+    .close-btn:hover {
+        color: #000;
+    }
+
+    /* Carrito flotante */
+ #cart-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ff5722;
+        color: white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        z-index: 10000;
+    }
+    /* Carrito panel */
+    #cart {
+        display: none;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 420px;
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        z-index: 9999;
+        font-size: 14px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    #cart h2 {
+        margin-top: 0;
+        font-size: 1.4em;
+    }
+    #cart input[type=text] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 6px;
+    }
+    .cart-item > div:first-child {
+        display: flex;
+        flex-direction: column;
+    }
+    .cart-item strong {
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+    .cart-item small {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 3px;
+    }
+    .cart-item-controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+    }
+    .cart-item-controls button {
+        background: #eee;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 4px 8px;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background 0.3s;
+    }
+    .cart-item-controls button:hover {
+        background: #ddd;
+    }
+    .cart-item-price {
+        min-width: 70px;
+        text-align: right;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    #cart-total {
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: right;
+    }
+    #order-button {
+        background: #ff5722;
+        color: white;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 12px;
+        transition: background 0.3s;
+    }
+    #order-button:hover {
+        background: #e64a19;
+    }
+
+    /* Modal boleta */
+  #boleta-modal {
+        position: fixed;
+        top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.7);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100000;
+        font-family: monospace;
+    }
+    #boleta-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 420px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+        color: #222;
+        outline: none;
+    }
+    #boleta-content h3 {
+        text-align: center;
+        margin-top: 0;
+    }
+    #boleta-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    #boleta-content table, #boleta-content th, #boleta-content td {
+        border: 1px solid #ccc;
+    }
+    #boleta-content th, #boleta-content td {
+        padding: 6px;
+        text-align: left;
+    }
+    #boleta-buttons button {
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background 0.3s;
+    }
+    #capture-button { background: #FF9800; color: white; }
+    #capture-button:hover { background: #fb8c00; }
+    #print-button { background: #2196F3; color: white; }
+    #print-button:hover { background: #1976D2; }
+    #confirm-purchase { background: #4CAF50; color: white; }
+    #confirm-purchase:hover { background: #388E3C; }
+
+    /* Loading spinner */
+  #loading-spinner {
+        display:none;
+        position: fixed;
+        top:50%; left:50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 18px;
+        z-index: 100001;
+    }
+
+    /* Responsive */
+   @media (max-width: 768px) {
         .product {
-            width: 200px;
-            min-width: 200px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-            position: relative;
-            scroll-snap-align: start;
-        }
-        .product:hover {
-            transform: scale(1.05);
-        }
-        .product img {
-            width: 100%;
-            height: auto;
-            border-radius: 0;
-        }
-        .product p {
-            margin: 5px 0;
-        }
-        .product .price {
-            font-weight: bold;
-        }
-        .product .add-to-cart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, 80px);
-            background: rgba(51, 51, 51, 0.8);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            font-size: 0.9em;
-            width: 90%;
-        }
-        .product:hover .add-to-cart {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-        .product .add-to-cart:hover {
-            background: #555;
-        }
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-        }
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .modal-content h3 {
-            margin: 0 0 10px;
-            font-size: 1.2em;
-        }
-        .modal-content .description {
-            margin: 10px 0;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .modal-content .rating {
-            margin: 10px 0;
-            color: #f1c40f;
-        }
-        .modal-content .price {
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .modal-content .color-palette {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 10px 0;
-        }
-        .modal-content .color-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .modal-content .color-circle.selected {
-            transform: scale(1.2);
-            border: 2px solid #333;
-        }
-        .modal-content .quantity {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        .modal-content .quantity-btn {
-            background: #333;
-            color: #fff;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .modal-content .quantity-btn:hover {
-            background: #555;
-        }
-        .modal-content .quantity-input {
-            width: 40px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-        }
-        .modal-content .btn-add-cart {
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .modal-content .btn-add-cart:hover {
-            background: #555;
-        }
-        .modal-content .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.2em;
-            cursor: pointer;
-            color: #333;
-        }
-        /* View All and Category Modals */
-        .view-all-modal, .clips-damas-modal, .clips-ninas-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
-        }
-        .view-all-modal-content, .clips-damas-modal-content, .clips-ninas-modal-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 90%;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-sizing: border-box;
-        }
-        .view-all-modal-content h2, .clips-damas-modal-content h2, .clips-ninas-modal-content h2 {
-            margin: 0 0 20px;
-            font-size: 1.5em;
-            text-align: center;
-        }
-        .search-container {
-            margin: 10px 0;
-            text-align: center;
-        }
-        .search-input {
-            width: 80%;
-            max-width: 400px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        .search-input:focus {
-            outline: none;
-            border-color: #333;
+            width: 150px;
+            min-width: 150px;
         }
         .view-all-products, .clips-damas-products, .clips-ninas-products {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 0 10px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         }
-        .view-all-products .product, .clips-damas-products .product, .clips-ninas-products .product {
-            width: 100%;
-            min-width: unset;
-        }
-        .view-all-modal-content .close-btn, .clips-damas-modal-content .close-btn, .clips-ninas-modal-content .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.2em;
-            cursor: pointer;
-            color: #333;
-        }
-        /* Category Buttons */
-        .category-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
+        .search-input {
+            width: 90%;
         }
         .category-btn {
-            font-size: 1.2em; /* Reduced font size */
-            font-weight: bold;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 4px 10px; /* Smaller padding */
-            border-radius: 5px;
-            cursor: pointer;
-            border: none;
-            transition: background 0.3s;
-        }
-        .category-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-        /* Model Section */
-        .model-section {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-            width: 100%;
-            flex-wrap: nowrap; /* Prevent wrapping to keep images side by side */
+            font-size: 1em;
+            padding: 4px 8px;
         }
         .model-item {
-            position: relative;
-            text-align: center;
-            width: 50%; /* Each item takes half the container width */
-            max-width: none; /* Remove max-width to allow full expansion */
+            width: 50%;
         }
         .model-item img {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-            display: block;
-            cursor: pointer; /* Indicate clickability */
         }
-        .model-item .category-btn {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%; /* Ensure button fits within image */
+    }
+    @media (max-width: 480px) {
+        .product {
+            width: 120px;
+            min-width: 120px;
         }
-        /* Responsive */
-        @media (max-width: 768px) {
-            .product {
-                width: 150px;
-                min-width: 150px;
-            }
-            .product .add-to-cart {
-                padding: 8px 15px;
-                font-size: 0.8em;
-            }
-            .view-all-products, .clips-damas-products, .clips-ninas-products {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            .search-input {
-                width: 90%;
-            }
-            .category-btn {
-                font-size: 1em; /* Smaller font for smaller screens */
-                padding: 4px 8px;
-            }
-            .model-item {
-                width: 50%; /* Maintain equal width */
-            }
-            .model-item img {
-                width: 100%;
-            }
+        .product p {
+            font-size: 0.9em;
         }
-        @media (max-width: 480px) {
-            .product {
-                width: 120px;
-                min-width: 120px;
-            }
-            .product p {
-                font-size: 0.9em;
-            }
-            .product .add-to-cart {
-                padding: 6px 10px;
-                font-size: 0.7em;
-            }
-            .view-all-products, .clips-damas-products, .clips-ninas-products {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-            .search-input {
-                width: 95%;
-            }
-            .category-btn {
-                font-size: 0.9em; /* Even smaller font for mobile */
-                padding: 3px 6px;
-            }
-            .model-item {
-                width: 50%; /* Maintain equal width */
-            }
-            .model-item img {
-                width: 100%;
-            }
+        .view-all-products, .clips-damas-products, .clips-ninas-products {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         }
-    </style>
+        .search-input {
+            width: 95%;
+        }
+        .category-btn {
+            font-size: 0.9em;
+            padding: 3px 6px;
+        }
+        .model-item {
+            width: 50%;
+        }
+        .model-item img {
+            width: 100%;
+        }
+    }
+</style>
 </head>
-<body>     <div class="container">         <!-- Header -->         <div class="header">             <div class="logo">                 <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXTTJyLqUwcNn1yduyV6i82lmL4ukvEZp-ePVd_P_Wa_y1VGwXNJOPpVxro2IxUZ55xE4oEndno5MItmJf7wjkFn0RYFCLtB4bOG2AHYHrupD1pkX8cf3jOUBHNUJOFEYOrwzTGEMSJj6j8=w1000-h1000-p-k-no" alt="TodoModa Logo">             </div>             <nav>                 <ul>                 </ul>             </nav>             <div class="icons">             </div>         </div>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXTTJyLqUwcNn1yduyV6i82lmL4ukvEZp-ePVd_P_Wa_y1VGwXNJOPpVxro2IxUZ55xE4oEndno5MItmJf7wjkFn0RYFCLtB4bOG2AHYHrupD1pkX8cf3jOUBHNUJOFEYOrwzTGEMSJj6j8=w1000-h1000-p-k-no" alt="TodoModa Logo" />
+        </div>
+        <nav>
+            <ul>
+                <!-- Puedes añadir links si quieres -->
+            </ul>
+        </nav>
+        <div class="icons">
+            <!-- Iconos si quieres -->
+        </div>
+    </div>
 
-        <!-- Carousel -->
- <div class="carousel">
-            <div class="slides">
-                <div class="slide-container">
-                    <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner 1">
-                </div>
-                <div class="slide-container">
-                    <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner 2">
-                </div>
+    <!-- Carousel -->
+ <div class="carousel" aria-label="Carrusel de banners">
+        <div class="slides">
+            <div class="slide-container">
+                <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner 1">
             </div>
-            <div class="banner-text" id="viewAllBtn">VER TODO</div>
-            <div class="dots">
-                <span class="active"></span>
-                <span></span>
+            <div class="slide-container">
+                <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner 2">
             </div>
         </div>
+        <div class="banner-text" id="viewAllBtn" tabindex="0" role="button" aria-label="Ver todos los productos">VER TODO</div>
+        <div class="dots" role="tablist">
+            <span class="active" role="tab" tabindex="0" aria-selected="true"></span>
+            <span role="tab" tabindex="0" aria-selected="false"></span>
+        </div>
+    </div>
+
 
         <!-- Product Listings -->
 <div class="products">
@@ -586,405 +703,580 @@
             </div>
         </div>
 
-        <!-- Modal -->
- <div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
-                <img id="modalImage" alt="" src="">
-                <h3 id="modalTitle"></h3>
-                <p class="description" id="modalDescription"></p>
-                <div class="rating" id="modalRating"></div>
-                <p class="price" id="modalPrice"></p>
-                <div class="color-palette" id="modalColors"></div>
-                <div class="quantity">
-                    <button class="quantity-btn" id="decreaseQty" aria-label="Disminuir cantidad">−</button>
-                    <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" aria-label="Cantidad">
-                    <button class="quantity-btn" id="increaseQty" aria-label="Aumentar cantidad">+</button>
-                </div>
-                <button class="btn-add-cart" id="modalAddCart">Agregar al carrito</button>
-            </div>
-        </div>
 
-        <!-- View All Products Modal -->
-<div class="view-all-modal" id="viewAllModal" role="dialog" aria-labelledby="viewAllModalTitle" aria-hidden="true">
-            <div class="view-all-modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
-                <h2 id="viewAllModalTitle">Todos los Productos</h2>
-                <div class="search-container">
-                    <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." aria-label="Buscar productos">
-                </div>
-                <div class="view-all-products" id="viewAllProducts"></div>
-            </div>
-        </div>
 
-        <!-- Clips Damas Modal -->
- <div class="clips-damas-modal" id="clipsDamasModal" role="dialog" aria-labelledby="clipsDamasModalTitle" aria-hidden="true">
-            <div class="clips-damas-modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
-                <h2 id="clipsDamasModalTitle">CLIPS DAMAS</h2>
-                <div class="search-container">
-                    <input type="text" class="search-input" id="clipsDamasSearch" placeholder="Buscar en Clips Damas..." aria-label="Buscar en Clips Damas">
-                </div>
-                <div class="clips-damas-products" id="clipsDamasProducts"></div>
-            </div>
+    <!-- Model Section -->
+<div class="model-section">
+        <div class="model-item">
+            <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUGuPXaSC1mPGUKkOYa5z7JyvELvbIy0B4-WtB3tMHIKm2D6Sbg1cTWwU0MsxRJR_5lKb5t1MnVOStZk-tNPdUudQ6-h7M7ueR4l8N5IgmuOrhlNRMi0B_uohBDRomdzQUIHP7y244Zc150=w1024-h1024-p-k-no" alt="Bufandas" />
+            <button class="category-btn" id="clipsDamasBtn">CLIPS DAMAS</button>
         </div>
-
-        <!-- Clips Niñas Modal -->
- <div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
-            <div class="clips-ninas-modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
-                <h2 id="clipsNinasModalTitle">CLIPS NIÑAS</h2>
-                <div class="search-container">
-                    <input type="text" class="search-input" id="clipsNinasSearch" placeholder="Buscar en Clips Niñas..." aria-label="Buscar en Clips Niñas">
-                </div>
-                <div class="clips-ninas-products" id="clipsNinasProducts"></div>
-            </div>
+        <div class="model-item">
+            <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUDER3L7ISerfG6uiIU8ISdgKkibO-SXwGGNL1azb_TJ0qYIN3T7LsJyU-qc9-kQtucnOkLr5rPYtWt0fW0UL8-7RDD46bg_0JnGLkD8RSfQvGydDvq6L_ZLBoj4hnIhwHB3CEx1fPtJ58O=w1024-h1024-p-k-no" alt="Carteras" />
+            <button class="category-btn" id="clipsNinasBtn">CLIPS NIÑAS</button>
         </div>
     </div>
+</div>
 
+<!-- Botón flotante abrir/cerrar carrito -->
+<div id="cart-button" title="Abrir carrito" aria-label="Abrir carrito de compras">🛒</div>
+
+<!-- Carrito -->
+<section id="cart" aria-live="polite" aria-label="Carrito de compras">
+    <h2>Carrito de Compras</h2>
+    <input type="text" id="client-name" placeholder="Nombre del cliente" aria-label="Nombre del cliente" autocomplete="name" />
+    <input type="text" id="client-dni" placeholder="DNI del cliente (8 dígitos)" aria-label="DNI del cliente" maxlength="8" autocomplete="off" />
+    <div id="cart-items" aria-relevant="additions removals"></div>
+    <p id="cart-total"><strong>Total: S/ 0.00</strong></p>
+    <button id="order-button">Realizar Pedido</button>
+</section>
+
+<!-- Modal boleta -->
+<div id="boleta-modal" role="dialog" aria-modal="true" aria-labelledby="boleta-title" style="display:none;">
+    <div id="boleta-content" tabindex="0"></div>
+</div>
+
+<!-- View All Products Modal -->
+<div class="view-all-modal" id="viewAllModal" role="dialog" aria-labelledby="viewAllModalTitle" aria-hidden="true">
+    <div class="view-all-modal-content">
+        <button class="close-btn" aria-label="Cerrar modal">&times;</button>
+        <h2 id="viewAllModalTitle">Todos los Productos</h2>
+        <div class="search-container">
+            <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." aria-label="Buscar productos" />
+        </div>
+        <div class="view-all-products" id="viewAllProducts"></div>
+    </div>
+</div>
+
+<!-- Clips Damas Modal -->
+<div class="clips-damas-modal" id="clipsDamasModal" role="dialog" aria-labelledby="clipsDamasModalTitle" aria-hidden="true">
+    <div class="clips-damas-modal-content">
+        <button class="close-btn" aria-label="Cerrar modal">&times;</button>
+        <h2 id="clipsDamasModalTitle">CLIPS DAMAS</h2>
+        <div class="search-container">
+            <input type="text" class="search-input" id="clipsDamasSearch" placeholder="Buscar en Clips Damas..." aria-label="Buscar en Clips Damas" />
+        </div>
+        <div class="clips-damas-products" id="clipsDamasProducts"></div>
+    </div>
+</div>
+
+<!-- Clips Niñas Modal -->
+<div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
+    <div class="clips-ninas-modal-content">
+        <button class="close-btn" aria-label="Cerrar modal">&times;</button>
+        <h2 id="clipsNinasModalTitle">CLIPS NIÑAS</h2>
+        <div class="search-container">
+            <input type="text" class="search-input" id="clipsNinasSearch" placeholder="Buscar en Clips Niñas..." aria-label="Buscar en Clips Niñas" />
+        </div>
+        <div class="clips-ninas-products" id="clipsNinasProducts"></div>
+    </div>
+</div>
+
+<!-- Loading Spinner -->
+<div id="loading-spinner" role="alert" aria-live="assertive">Cargando...</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
-        // Carousel functionality
-        const slides = document.querySelector('.carousel .slides');
-        const dots = document.querySelectorAll('.carousel .dots span');
-        let currentIndex = 0;
+/* === Variables y funciones base === */
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        function showSlide(index) {
-            slides.style.transform = `translateX(-${index * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
+// Formatea número a moneda Soles
+function formatCurrency(amount) {
+    return `S/ ${parseFloat(amount).toFixed(2)}`;
+}
+
+// Número a letras (simplificado)
+function numberToLetters(n) {
+    const parts = n.toFixed(2).split('.');
+    return `${parseInt(parts[0])} CON ${parts[1]}/100 SOLES`;
+}
+
+// Actualiza botones de agregar para producto y carrito
+function updateAddButtons() {
+    document.querySelectorAll('.product').forEach(prod => {
+        const prodId = prod.dataset.id;
+        const selectedColorCircle = prod.querySelector('.color-circle.selected');
+        const prodColor = selectedColorCircle ? selectedColorCircle.getAttribute('data-color') : null;
+        const inCart = cart.some(item => item.id === prodId && item.color === prodColor);
+        const btn = prod.querySelector('.add-to-cart');
+        btn.disabled = !prodColor || inCart;
+        btn.textContent = inCart ? 'Agregado' : 'Agregar al carrito';
+    });
+}
+
+// Actualiza la vista del carrito
+function updateCart() {
+    const cartItemsDiv = document.getElementById('cart-items');
+    let html = '';
+    let total = 0;
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        html += `
+        <div class="cart-item" data-id="${item.id}" data-color="${item.color}">
+            <div>
+                <strong>${item.name}</strong><br />
+                <small>Color: <span style="color:${item.color}; font-weight:bold;">${item.colorName}</span></small><br />
+                <div class="cart-item-controls">
+                    <button class="decrease" aria-label="Disminuir cantidad de ${item.name}">−</button>
+                    <span aria-live="polite" aria-atomic="true">${item.quantity}</span>
+                    <button class="increase" aria-label="Aumentar cantidad de ${item.name}">+</button>
+                    <button class="remove" aria-label="Eliminar ${item.name} del carrito" style="color:#f44336;">🗑️</button>
+                </div>
+            </div>
+            <div class="cart-item-price">${formatCurrency(item.price * item.quantity)}</div>
+        </div>`;
+    });
+    cartItemsDiv.innerHTML = html;
+    document.getElementById('cart-total').innerHTML = `<strong>Total: ${formatCurrency(total)}</strong>`;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateAddButtons();
+}
+
+// Añade producto al carrito
+function addToCart(id, name, price, color, colorName) {
+    let item = cart.find(i => i.id === id && i.color === color);
+    if (item) {
+        item.quantity++;
+    } else {
+        cart.push({ id, name, price, quantity: 1, color, colorName });
+    }
+    updateCart();
+    alert(`Producto "${name}" con color "${colorName}" agregado al carrito.`);
+}
+
+/* === Eventos selección color === */
+document.querySelectorAll('.product').forEach(prod => {
+    const colors = prod.querySelectorAll('.color-circle');
+    colors.forEach(colorCircle => {
+        colorCircle.addEventListener('click', () => {
+            colors.forEach(c => {
+                c.classList.remove('selected');
+                c.setAttribute('aria-checked', 'false');
             });
-        }
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                currentIndex = i;
-                showSlide(currentIndex);
-            });
+            colorCircle.classList.add('selected');
+            colorCircle.setAttribute('aria-checked', 'true');
+            updateAddButtons();
         });
-
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % dots.length;
-            showSlide(currentIndex);
-        }, 5000);
-
-        // Modal functionality
-        const modal = document.getElementById('colorModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalRating = document.getElementById('modalRating');
-        const modalPrice = document.getElementById('modalPrice');
-        const modalColors = document.getElementById('modalColors');
-        const modalAddCart = document.getElementById('modalAddCart');
-        const decreaseQty = document.getElementById('decreaseQty');
-        const increaseQty = document.getElementById('increaseQty');
-        const quantityInput = document.getElementById('quantityInput');
-        const closeBtn = document.querySelector('.modal .close-btn');
-
-        let selectedColor = null;
-
-        function openProductModal(product) {
-            const id = product.getAttribute('data-id');
-            const name = product.querySelector('p').textContent;
-            const price = product.querySelector('.price').textContent;
-            const image = product.querySelector('img').src;
-            const alt = product.querySelector('img').alt;
-            const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
-            const rating = product.getAttribute('data-rating');
-            const description = product.getAttribute('data-description');
-
-            modalImage.src = image;
-            modalImage.alt = alt;
-            modalTitle.textContent = name;
-            modalDescription.textContent = description;
-            modalRating.textContent = rating;
-            modalPrice.textContent = price;
-            modalAddCart.setAttribute('data-id', id);
-            modalAddCart.setAttribute('data-name', name);
-            modalAddCart.setAttribute('data-price', price.replace('S/ ', ''));
-
-            modalColors.innerHTML = colors.map(color => 
-                `<span class="color-circle" style="background-color: ${color.color};" title="${color.title}" data-color="${color.color}"></span>`
-            ).join('');
-
-            quantityInput.value = 1;
-            selectedColor = null;
-            modalColors.querySelectorAll('.color-circle').forEach(circle => {
-                circle.classList.remove('selected');
-                circle.addEventListener('click', () => {
-                    modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
-                    circle.classList.add('selected');
-                    selectedColor = circle.getAttribute('data-color');
-                });
-            });
-
-            modal.style.display = 'flex';
-            modal.setAttribute('aria-hidden', 'false');
-        }
-
-        // Quantity controls
-        decreaseQty.addEventListener('click', () => {
-            let qty = parseInt(quantityInput.value);
-            if (qty > 1) quantityInput.value = qty - 1;
-        });
-
-        increaseQty.addEventListener('click', () => {
-            let qty = parseInt(quantityInput.value);
-            quantityInput.value = qty + 1;
-        });
-
-        quantityInput.addEventListener('input', () => {
-            if (quantityInput.value < 1) quantityInput.value = 1;
-        });
-
-        // Add to cart (placeholder functionality)
-        modalAddCart.addEventListener('click', () => {
-            const id = modalAddCart.getAttribute('data-id');
-            const name = modalAddCart.getAttribute('data-name');
-            const price = modalAddCart.getAttribute('data-price');
-            const quantity = quantityInput.value;
-            alert(`Añadido al carrito: ${name}, Cantidad: ${quantity}, Color: ${selectedColor || 'Ninguno'}, Precio: S/ ${(price * quantity).toFixed(2)}`);
-        });
-
-        // Close product modal
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            modal.setAttribute('aria-hidden', 'true');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden', 'true');
+        // Keyboard support for color selection
+        colorCircle.addEventListener('keydown', e => {
+            if(e.key === "Enter" || e.key === " "){
+                e.preventDefault();
+                colorCircle.click();
             }
         });
+    });
+});
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden', 'true');
+/* === Botones agregar al carrito === */
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', e => {
+        const prod = e.target.closest('.product');
+        const id = prod.dataset.id;
+        const name = prod.dataset.name;
+        const price = parseFloat(prod.dataset.price);
+        const selectedColorCircle = prod.querySelector('.color-circle.selected');
+        if (!selectedColorCircle) {
+            alert('Por favor, seleccione un color.');
+            return;
+        }
+        const color = selectedColorCircle.getAttribute('data-color');
+        const colorName = selectedColorCircle.getAttribute('data-colorname');
+        addToCart(id, name, price, color, colorName);
+    });
+});
+
+/* === Botón abrir/cerrar carrito === */
+const cartButton = document.getElementById('cart-button');
+const cartSection = document.getElementById('cart');
+cartButton.addEventListener('click', () => {
+    if (cartSection.style.display === 'block') {
+        cartSection.style.display = 'none';
+        cartButton.setAttribute('aria-label', 'Abrir carrito de compras');
+    } else {
+        cartSection.style.display = 'block';
+        cartButton.setAttribute('aria-label', 'Cerrar carrito de compras');
+    }
+});
+
+/* === Botones en carrito: aumentar, disminuir, eliminar === */
+document.getElementById('cart-items').addEventListener('click', e => {
+    if (!e.target.matches('button')) return;
+    const cartItemDiv = e.target.closest('.cart-item');
+    const id = cartItemDiv.dataset.id;
+    const color = cartItemDiv.dataset.color;
+    let item = cart.find(i => i.id === id && i.color === color);
+    if (!item) return;
+
+    if (e.target.classList.contains('increase')) {
+        item.quantity++;
+    } else if (e.target.classList.contains('decrease')) {
+        item.quantity--;
+        if (item.quantity <= 0) {
+            cart = cart.filter(i => !(i.id === id && i.color === color));
+        }
+    } else if (e.target.classList.contains('remove')) {
+        cart = cart.filter(i => !(i.id === id && i.color === color));
+    }
+    updateCart();
+});
+
+/* === Botón realizar pedido === */
+document.getElementById('order-button').addEventListener('click', () => {
+    const clientName = document.getElementById('client-name').value.trim();
+    const clientDni = document.getElementById('client-dni').value.trim();
+
+    if (!clientName || !clientDni) {
+        alert('Por favor, complete nombre y DNI.');
+        return;
+    }
+    if (!/^\d{8}$/.test(clientDni)) {
+        alert('El DNI debe tener 8 dígitos.');
+        return;
+    }
+    if (cart.length === 0) {
+        alert('El carrito está vacío.');
+        return;
+    }
+
+    let total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+    let date = new Date();
+    let dateStr = date.toLocaleDateString();
+    let timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    let html = `
+    <h3 id="boleta-title">BOLETA DE VENTA ELECTRÓNICA</h3>
+    <div style="text-align:center; margin-bottom:10px;">
+        <img src="https://i.ibb.co/Kz9NwFym/yape-qr.jpg" alt="QR Pago" style="width:150px; border-radius:10px;" />
+        <p style="margin:5px 0; font-size:12px;">Paga aquí con Yape</p>
+        <p style="margin:0; font-size:12px;">Jhonny David Palacios Gutierrez</p>
+    </div>
+    <p><strong>Cliente:</strong> ${clientName}</p>
+    <p><strong>DNI:</strong> ${clientDni}</p>
+    <p><strong>Fecha:</strong> ${dateStr} <strong>Hora:</strong> ${timeStr}</p>
+    <hr/>
+    <table>
+        <thead>
+            <tr><th>Cant</th><th>Producto</th><th>Color</th><th>Precio Unit.</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+    `;
+    cart.forEach(item => {
+        html += `<tr>
+            <td>${item.quantity}</td>
+            <td>${item.name}</td>
+            <td style="color:${item.color}; font-weight:bold;">${item.colorName}</td>
+            <td>${formatCurrency(item.price)}</td>
+            <td>${formatCurrency(item.price * item.quantity)}</td>
+        </tr>`;
+    });
+    html += `
+        </tbody>
+    </table>
+    <hr/>
+    <p><strong>Total S/:</strong> ${formatCurrency(total)}</p>
+    <p><strong>Son:</strong> ${numberToLetters(total)}</p>
+    <div id="boleta-buttons">
+        <button id="capture-button">📸 Capturar Imagen</button>
+        <button id="print-button">🖨 Imprimir</button>
+        <button id="confirm-purchase">Confirmar Compra</button>
+    </div>
+    `;
+
+    const modal = document.getElementById('boleta-modal');
+    const content = document.getElementById('boleta-content');
+    content.innerHTML = html;
+    modal.style.display = 'flex';
+    content.focus();
+
+    // Capturar imagen con html2canvas
+    document.getElementById('capture-button').onclick = () => {
+        document.getElementById('loading-spinner').style.display = 'block';
+        html2canvas(content).then(canvas => {
+            document.getElementById('loading-spinner').style.display = 'none';
+            const link = document.createElement('a');
+            link.download = 'boleta.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }).catch(() => {
+            alert('Error al capturar la imagen.');
+            document.getElementById('loading-spinner').style.display = 'none';
+        });
+    };
+
+    // Imprimir boleta
+    document.getElementById('print-button').onclick = () => {
+        let printWindow = window.open('', '', 'width=600,height=700');
+        printWindow.document.write('<html><head><title>Imprimir Boleta</title></head><body>');
+        printWindow.document.write(content.innerHTML);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    };
+
+    // Confirmar compra - enviar por WhatsApp
+    document.getElementById('confirm-purchase').onclick = () => {
+        let orderText = `Hola! 👋%0AQuiero realizar un pedido:%0ACliente: ${clientName}%0ADNI: ${clientDni}%0AProductos:%0A`;
+        cart.forEach(item => {
+            orderText += `${item.quantity} x ${item.name} (Color: ${item.colorName}) - ${formatCurrency(item.price * item.quantity)}%0A`;
+        });
+        orderText += `Total: ${formatCurrency(total)}%0A%0AAdjunto (captura de boleta)📸 (pago electrónico)💳`;
+
+        // Cambia el número por tu número real con código país sin "+"
+        const whatsappURL = `https://wa.me/51975842622?text=${orderText}`;
+        window.open(whatsappURL, '_blank');
+
+        // Limpiar carrito y cerrar modal
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCart();
+        modal.style.display = 'none';
+        alert('Pedido enviado. ¡Gracias por su compra!');
+    };
+});
+
+/* === Cerrar modal boleta al hacer clic fuera === */
+document.getElementById('boleta-modal').addEventListener('click', e => {
+    if (e.target.id === 'boleta-modal') {
+        e.target.style.display = 'none';
+    }
+});
+
+/* === Inicialización carrito al cargar === */
+updateCart();
+
+/* === Funciones y eventos para el carousel === */
+const slides = document.querySelector('.carousel .slides');
+const dots = document.querySelectorAll('.carousel .dots span');
+let currentIndex = 0;
+function showSlide(index) {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+    });
+}
+dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+        currentIndex = i;
+        showSlide(currentIndex);
+    });
+    dot.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dot.click();
+        }
+    });
+});
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % dots.length;
+    showSlide(currentIndex);
+}, 5000);
+
+/* === Modal "Ver Todo" === */
+const viewAllModal = document.getElementById('viewAllModal');
+const viewAllBtn = document.getElementById('viewAllBtn');
+const viewAllProductsContainer = document.getElementById('viewAllProducts');
+const viewAllCloseBtn = viewAllModal.querySelector('.close-btn');
+const productSearch = document.getElementById('productSearch');
+
+function cloneProductWithColorSelection(prod) {
+    const clone = prod.cloneNode(true);
+    // Reset color selection and buttons
+    const colors = clone.querySelectorAll('.color-circle');
+    colors.forEach(c => {
+        c.classList.remove('selected');
+        c.setAttribute('aria-checked', 'false');
+        c.addEventListener('click', () => {
+            colors.forEach(cc => {
+                cc.classList.remove('selected');
+                cc.setAttribute('aria-checked', 'false');
+            });
+            c.classList.add('selected');
+            c.setAttribute('aria-checked', 'true');
+            updateAddButtons();
+        });
+        c.addEventListener('keydown', e => {
+            if(e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                c.click();
             }
         });
-
-        // Product event listeners
-        function attachProductListeners(products) {
-            products.forEach(product => {
-                product.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
-                    openProductModal(product);
-                });
-                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openProductModal(product);
-                });
-            });
+    });
+    const btn = clone.querySelector('.add-to-cart');
+    btn.disabled = true;
+    btn.textContent = 'Agregar al carrito';
+    btn.addEventListener('click', e => {
+        const prodElem = e.target.closest('.product');
+        const id = prodElem.dataset.id;
+        const name = prodElem.dataset.name;
+        const price = parseFloat(prodElem.dataset.price);
+        const selectedColorCircle = prodElem.querySelector('.color-circle.selected');
+        if (!selectedColorCircle) {
+            alert('Por favor, seleccione un color.');
+            return;
         }
+        const color = selectedColorCircle.getAttribute('data-color');
+        const colorName = selectedColorCircle.getAttribute('data-colorname');
+        addToCart(id, name, price, color, colorName);
+    });
+    return clone;
+}
 
-        const allProducts = document.querySelectorAll('.products .product');
-        attachProductListeners(allProducts);
+function updateViewAllProducts(searchTerm = '') {
+    viewAllProductsContainer.innerHTML = '';
+    const allProducts = document.querySelectorAll('.products .product');
+    const filtered = Array.from(allProducts).filter(p => {
+        const name = p.dataset.name.toLowerCase();
+        return name.includes(searchTerm.toLowerCase());
+    });
+    filtered.forEach(p => {
+        const clone = cloneProductWithColorSelection(p);
+        viewAllProductsContainer.appendChild(clone);
+    });
+}
 
-        // View All Products Modal functionality
-        const viewAllModal = document.getElementById('viewAllModal');
-        const viewAllBtn = document.getElementById('viewAllBtn');
-        const viewAllProductsContainer = document.getElementById('viewAllProducts');
-        const viewAllCloseBtn = document.querySelector('.view-all-modal .close-btn');
-        const productSearch = document.getElementById('productSearch');
+viewAllBtn.addEventListener('click', () => {
+    productSearch.value = '';
+    updateViewAllProducts();
+    viewAllModal.style.display = 'flex';
+    viewAllModal.setAttribute('aria-hidden', 'false');
+    productSearch.focus();
+});
+viewAllCloseBtn.addEventListener('click', () => {
+    viewAllModal.style.display = 'none';
+    viewAllModal.setAttribute('aria-hidden', 'true');
+});
+viewAllModal.addEventListener('click', e => {
+    if (e.target === viewAllModal) {
+        viewAllModal.style.display = 'none';
+        viewAllModal.setAttribute('aria-hidden', 'true');
+    }
+});
+productSearch.addEventListener('input', () => {
+    updateViewAllProducts(productSearch.value);
+});
 
-        function updateViewAllProducts(searchTerm = '') {
-            viewAllProductsContainer.innerHTML = '';
-            const filteredProducts = Array.from(allProducts).filter(product => {
-                const name = product.querySelector('p').textContent.toLowerCase();
-                return name.includes(searchTerm.toLowerCase());
-            });
+/* === Clips Damas Modal === */
+const clipsDamasModal = document.getElementById('clipsDamasModal');
+const clipsDamasBtn = document.getElementById('clipsDamasBtn');
+const clipsDamasProductsContainer = document.getElementById('clipsDamasProducts');
+const clipsDamasCloseBtn = clipsDamasModal.querySelector('.close-btn');
+const clipsDamasSearch = document.getElementById('clipsDamasSearch');
 
-            filteredProducts.forEach(product => {
-                const productClone = product.cloneNode(true);
-                viewAllProductsContainer.appendChild(productClone);
-            });
+function updateClipsDamasProducts(searchTerm = '') {
+    clipsDamasProductsContainer.innerHTML = '';
+    const allProducts = document.querySelectorAll('.products .product');
+    const damasProducts = Array.from(allProducts).filter(p => {
+        const id = parseInt(p.dataset.id);
+        return id >= 1 && id <= 9; // Ajusta rango según tus productos Clips Damas
+    });
+    const filtered = damasProducts.filter(p => {
+        const name = p.dataset.name.toLowerCase();
+        return name.includes(searchTerm.toLowerCase());
+    });
+    filtered.forEach(p => {
+        const clone = cloneProductWithColorSelection(p);
+        clipsDamasProductsContainer.appendChild(clone);
+    });
+}
+clipsDamasBtn.addEventListener('click', () => {
+    clipsDamasSearch.value = '';
+    updateClipsDamasProducts();
+    clipsDamasModal.style.display = 'flex';
+    clipsDamasModal.setAttribute('aria-hidden', 'false');
+    clipsDamasSearch.focus();
+});
+clipsDamasCloseBtn.addEventListener('click', () => {
+    clipsDamasModal.style.display = 'none';
+    clipsDamasModal.setAttribute('aria-hidden', 'true');
+});
+clipsDamasModal.addEventListener('click', e => {
+    if (e.target === clipsDamasModal) {
+        clipsDamasModal.style.display = 'none';
+        clipsDamasModal.setAttribute('aria-hidden', 'true');
+    }
+});
+clipsDamasSearch.addEventListener('input', () => {
+    updateClipsDamasProducts(clipsDamasSearch.value);
+});
 
-            attachProductListeners(viewAllProductsContainer.querySelectorAll('.product'));
-        }
+/* === Clips Niñas Modal === */
+const clipsNinasModal = document.getElementById('clipsNinasModal');
+const clipsNinasBtn = document.getElementById('clipsNinasBtn');
+const clipsNinasProductsContainer = document.getElementById('clipsNinasProducts');
+const clipsNinasCloseBtn = clipsNinasModal.querySelector('.close-btn');
+const clipsNinasSearch = document.getElementById('clipsNinasSearch');
 
-        viewAllBtn.addEventListener('click', () => {
-            productSearch.value = '';
-            updateViewAllProducts();
-            viewAllModal.style.display = 'flex';
-            viewAllModal.setAttribute('aria-hidden', 'false');
-            productSearch.focus();
-        });
+function updateClipsNinasProducts(searchTerm = '') {
+    clipsNinasProductsContainer.innerHTML = '';
+    const allProducts = document.querySelectorAll('.products .product');
+    const ninasProducts = Array.from(allProducts).filter(p => {
+        const id = parseInt(p.dataset.id);
+        return id >= 14 && id <= 19; // Ajusta rango según tus productos Clips Niñas
+    });
+    const filtered = ninasProducts.filter(p => {
+        const name = p.dataset.name.toLowerCase();
+        return name.includes(searchTerm.toLowerCase());
+    });
+    filtered.forEach(p => {
+        const clone = cloneProductWithColorSelection(p);
+        clipsNinasProductsContainer.appendChild(clone);
+    });
+}
+clipsNinasBtn.addEventListener('click', () => {
+    clipsNinasSearch.value = '';
+    updateClipsNinasProducts();
+    clipsNinasModal.style.display = 'flex';
+    clipsNinasModal.setAttribute('aria-hidden', 'false');
+    clipsNinasSearch.focus();
+});
+clipsNinasCloseBtn.addEventListener('click', () => {
+    clipsNinasModal.style.display = 'none';
+    clipsNinasModal.setAttribute('aria-hidden', 'true');
+});
+clipsNinasModal.addEventListener('click', e => {
+    if (e.target === clipsNinasModal) {
+        clipsNinasModal.style.display = 'none';
+        clipsNinasModal.setAttribute('aria-hidden', 'true');
+    }
+});
+clipsNinasSearch.addEventListener('input', () => {
+    updateClipsNinasProducts(clipsNinasSearch.value);
+});
 
-        productSearch.addEventListener('input', () => {
-            updateViewAllProducts(productSearch.value);
-        });
+/* === Model Section imágenes clickables === */
+document.querySelectorAll('.model-item').forEach(item => {
+    const img = item.querySelector('img');
+    const btn = item.querySelector('.category-btn');
+    img.addEventListener('click', (e) => {
+        e.preventDefault();
+        btn.click();
+    });
+});
 
-        viewAllCloseBtn.addEventListener('click', () => {
+/* === Cerrar modales con Escape === */
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (viewAllModal.style.display === 'flex') {
             viewAllModal.style.display = 'none';
             viewAllModal.setAttribute('aria-hidden', 'true');
-        });
-
-        viewAllModal.addEventListener('click', (e) => {
-            if (e.target === viewAllModal) {
-                viewAllModal.style.display = 'none';
-                viewAllModal.setAttribute('aria-hidden', 'true');
-            }
-        });
-
-        // Clips Damas Modal functionality
-        const clipsDamasModal = document.getElementById('clipsDamasModal');
-        const clipsDamasBtn = document.getElementById('clipsDamasBtn');
-        const clipsDamasProductsContainer = document.getElementById('clipsDamasProducts');
-        const clipsDamasCloseBtn = document.querySelector('.clips-damas-modal .close-btn');
-        const clipsDamasSearch = document.getElementById('clipsDamasSearch');
-
-        function updateClipsDamasProducts(searchTerm = '') {
-            clipsDamasProductsContainer.innerHTML = '';
-            const damasProducts = Array.from(allProducts).filter(product => {
-                const id = parseInt(product.getAttribute('data-id'));
-                return id >= 1 && id <= 9;
-            });
-            const filteredProducts = damasProducts.filter(product => {
-                const name = product.querySelector('p').textContent.toLowerCase();
-                return name.includes(searchTerm.toLowerCase());
-            });
-
-            filteredProducts.forEach(product => {
-                const productClone = product.cloneNode(true);
-                clipsDamasProductsContainer.appendChild(productClone);
-            });
-
-            attachProductListeners(clipsDamasProductsContainer.querySelectorAll('.product'));
-            clipsDamasProductsContainer.querySelectorAll('.product').forEach(product => {
-                product.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
-                    clipsDamasModal.style.display = 'none';
-                    clipsDamasModal.setAttribute('aria-hidden', 'true');
-                    openProductModal(product);
-                });
-                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    clipsDamasModal.style.display = 'none';
-                    clipsDamasModal.setAttribute('aria-hidden', 'true');
-                    openProductModal(product);
-                });
-            });
         }
-
-        clipsDamasBtn.addEventListener('click', () => {
-            clipsDamasSearch.value = '';
-            updateClipsDamasProducts();
-            clipsDamasModal.style.display = 'flex';
-            clipsDamasModal.setAttribute('aria-hidden', 'false');
-            clipsDamasSearch.focus();
-        });
-
-        clipsDamasSearch.addEventListener('input', () => {
-            updateClipsDamasProducts(clipsDamasSearch.value);
-        });
-
-        clipsDamasCloseBtn.addEventListener('click', () => {
+        if (clipsDamasModal.style.display === 'flex') {
             clipsDamasModal.style.display = 'none';
             clipsDamasModal.setAttribute('aria-hidden', 'true');
-        });
-
-        clipsDamasModal.addEventListener('click', (e) => {
-            if (e.target === clipsDamasModal) {
-                clipsDamasModal.style.display = 'none';
-                clipsDamasModal.setAttribute('aria-hidden', 'true');
-            }
-        });
-
-        // Clips Niñas Modal functionality
-        const clipsNinasModal = document.getElementById('clipsNinasModal');
-        const clipsNinasBtn = document.getElementById('clipsNinasBtn');
-        const clipsNinasProductsContainer = document.getElementById('clipsNinasProducts');
-        const clipsNinasCloseBtn = document.querySelector('.clips-ninas-modal .close-btn');
-        const clipsNinasSearch = document.getElementById('clipsNinasSearch');
-
-        function updateClipsNinasProducts(searchTerm = '') {
-            clipsNinasProductsContainer.innerHTML = '';
-            const ninasProducts = Array.from(allProducts).filter(product => {
-                const id = parseInt(product.getAttribute('data-id'));
-                return id >= 14 && id <= 19;
-            });
-            const filteredProducts = ninasProducts.filter(product => {
-                const name = product.querySelector('p').textContent.toLowerCase();
-                return name.includes(searchTerm.toLowerCase());
-            });
-
-            filteredProducts.forEach(product => {
-                const productClone = product.cloneNode(true);
-                clipsNinasProductsContainer.appendChild(productClone);
-            });
-
-            attachProductListeners(clipsNinasProductsContainer.querySelectorAll('.product'));
-            clipsNinasProductsContainer.querySelectorAll('.product').forEach(product => {
-                product.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('btn-add-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
-                    clipsNinasModal.style.display = 'none';
-                    clipsNinasModal.setAttribute('aria-hidden', 'true');
-                    openProductModal(product);
-                });
-                product.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    clipsNinasModal.style.display = 'none';
-                    clipsNinasModal.setAttribute('aria-hidden', 'true');
-                    openProductModal(product);
-                });
-            });
         }
-
-        clipsNinasBtn.addEventListener('click', () => {
-            clipsNinasSearch.value = '';
-            updateClipsNinasProducts();
-            clipsNinasModal.style.display = 'flex';
-            clipsNinasModal.setAttribute('aria-hidden', 'false');
-            clipsNinasSearch.focus();
-        });
-
-        clipsNinasSearch.addEventListener('input', () => {
-            updateClipsNinasProducts(clipsNinasSearch.value);
-        });
-
-        clipsNinasCloseBtn.addEventListener('click', () => {
+        if (clipsNinasModal.style.display === 'flex') {
             clipsNinasModal.style.display = 'none';
             clipsNinasModal.setAttribute('aria-hidden', 'true');
-        });
-
-        clipsNinasModal.addEventListener('click', (e) => {
-            if (e.target === clipsNinasModal) {
-                clipsNinasModal.style.display = 'none';
-                clipsNinasModal.setAttribute('aria-hidden', 'true');
-            }
-        });
-
-        // Make model section images clickable
-        const modelItems = document.querySelectorAll('.model-item');
-        modelItems.forEach(item => {
-            const img = item.querySelector('img');
-            const btn = item.querySelector('.category-btn');
-            img.addEventListener('click', (e) => {
-                e.preventDefault();
-                btn.click(); // Trigger the button's click event
-            });
-        });
-
-        // Close modals on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (viewAllModal.style.display === 'flex') {
-                    viewAllModal.style.display = 'none';
-                    viewAllModal.setAttribute('aria-hidden', 'true');
-                }
-                if (clipsDamasModal.style.display === 'flex') {
-                    clipsDamasModal.style.display = 'none';
-                    clipsDamasModal.setAttribute('aria-hidden', 'true');
-                }
-                if (clipsNinasModal.style.display === 'flex') {
-                    clipsNinasModal.style.display = 'none';
-                    clipsNinasModal.setAttribute('aria-hidden', 'true');
-                }
-            }
-        });
-    </script>
+        }
+        const boletaModal = document.getElementById('boleta-modal');
+        if(boletaModal.style.display === 'flex'){
+            boletaModal.style.display = 'none';
+        }
+    }
+});
+</script>
 </body>
 </html>
