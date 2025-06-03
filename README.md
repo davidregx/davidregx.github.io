@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -103,7 +102,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            loading: lazy;
         }
         .carousel .banner-text {
             position: absolute;
@@ -331,7 +329,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://lh3.googleusercontent.com/gps-cs/AIky0YWZF8wu37kpyKmtSowVsNaeNGpRMtvKeWkCZif90TIR3x-SxoKtOhnsCjpKQy82BoA-1rwQT5Y5PM-iy0Ko_pymybn_Ep_RsCCd3tB7tbdzJuTVLMEHIEJhWNijbZBBri_rwnZ_eAbuC70=w1024-h1536-p-k-no');
+            background-image: url('https://via.placeholder.com/1024x1536?text=CartBackground');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -664,7 +662,7 @@
                 font-size: 0.7em;
             }
             .view-all-products, .clips-damas-products, .clips-ninas-products {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
             .search-input {
                 width: 95%;
@@ -687,7 +685,7 @@
         <!-- Header -->
         <div class="header">
             <div class="logo">
-                <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXTTJyLqUwcNn1yduyV6i82lmL4ukvEZp-ePVd_P_Wa_y1VGwXNJOPpVxro2IxUZ55xE4oEndno5MItmJf7wjkFn0RYFCLtB4bOG2AHYHrupD1pkX8cf3jOUBHNUJOFEYOrwzTGEMSJj6j8=w1000-h1000-p-k-no" alt="TodoModa Logo" onerror="this.src='https://via.placeholder.com/100x100?text=Logo'" loading="lazy">
+                <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YXTTJyLqUwcNn1yduyV6i82lmL4ukvEZp-ePVd_P_Wa_y1VGwXNJOPpVxro2IxUZ55xE4oEndno5MItmJf7wjkFn0RYFCLtB4bOG2AHYHrupD1pkX8cf3jOUBHNUJOFEYOrwzTGEMSJj6j8=w1000-h1000-p-k-no" alt="TodoModa Logo" onerror="this.src='https://via.placeholder.com/100x100?text=Logo'">
             </div>
             <nav>
                 <ul>
@@ -700,7 +698,7 @@
                 <img src="https://via.placeholder.com/20x20?text=Search" alt="Ícono de búsqueda" class="search-icon">
                 <img src="https://via.placeholder.com/20x20?text=Profile" alt="Ícono de perfil" class="profile-icon">
                 <div class="cart-icon">
-                    <div id="cart-button" onclick="toggleCart()">🛒</div>
+                    <div id="cart-button" onclick="toggleCart()" role="button" aria-label="Abrir carrito de compras">🛒</div>
                     <span class="cart-counter" id="cartCounter">0</span>
                 </div>
             </div>
@@ -710,10 +708,10 @@
  <div class="carousel">
             <div class="slides">
                 <div class="slide-container">
-                    <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner de promoción de accesorios" onerror="this.src='https://via.placeholder.com/1200x675?text=Banner'" loading="lazy">
+                    <img src="https://pe.todomoda.com/media/wysiwyg/TM_DISNEY_STITCH_-_BANNERS_Desk_new_1.jpg" alt="Banner de promoción de accesorios" onerror="this.src='https://via.placeholder.com/1200x675?text=Banner'">
                 </div>
                 <div class="slide-container">
-                    <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner de accesorios coloridos" onerror="this.src='https://via.placeholder.com/1200x675?text=Banner'" loading="lazy">
+                    <img src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" alt="Banner de accesorios coloridos" onerror="this.src='https://via.placeholder.com/1200x675?text=Banner'">
                 </div>
             </div>
             <div class="banner-text" id="viewAllBtn">VER TODO</div>
@@ -730,92 +728,92 @@
                 <img alt="Maxilazos coloridos en amarillo, rojo, lila, verde y celeste" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXdnjCFtJm5EhEvClhpsqjsYwwH2Xdqql3H45tWmgLdhiRX--KLwloCAl85SxTImNaOYYbS1MOrlGYrDwH31YoIyFBBn7KapQIKbAHVfoyNmbRBjjgmF0_SefXWn6udgSSaO19kdNtmnQBd=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Maxilazos - 5 Colores</p>
                 <p class="price">S/ 7.00</p>
-                <button class="add-to-cart" data-id="1">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="1" role="button" aria-label="Agregar Maxilazos - 5 Colores al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="2" data-category="damas" data-colors='[{"color": "#17202a", "title": "Negro"}, {"color": "#fff9c4", "title": "Crema"}, {"color": "#fdebd0", "title": "Piel"}, {"color": "#fdfefe", "title": "Crema"}]' data-rating="⭐⭐⭐☆☆ (3.2)" data-description="Ganchos en forma de corazón, ideales para looks delicados.">
-                <img alt="Mini ganchos en forma de corazón en negro, crema y piel" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUd2bofobsLtUl3qONXRSiTNou1a9W74yTaVYEr6h64PAuOOqQ-g_w6Ifs8arhOVjWboOrUFEcEDZlmtSBZkgS1YjEnSIw1f3w4IZRdMBwxibVChvNz2c93C78bOxNsx68MuBmN-4iYNCg=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Mini ganchos en forma de corazón en negro, crema y piel" src="https://via.placeholder.com/200x200?text=Corazon" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Mini Gancho Corazón</p>
                 <p class="price">S/ 2.50</p>
-                <button class="add-to-cart" data-id="2">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="2" role="button" aria-label="Agregar Mini Gancho Corazón al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="3" data-category="damas" data-colors='[{"color": "#FFFFFF", "title": "Blanco"}, {"color": "#FF0000", "title": "Rojo"}, {"color": "#008000", "title": "Verde"}]' data-rating="⭐⭐⭐⭐⭐ (5.0)" data-description="Ganchos temáticos navideños para un estilo festivo.">
-                <img alt="Ganchos navideños en blanco, rojo y verde" src="https://lh3.googleusercontent.com/gps-cs/AIky0YV8A_P0YjCC6AIfC2B6HFvCKobK0UJZjVWMnzr6lfYPVXUk0gsszvJXojCK_ycIVH0cOD1-Qw3ICj1Bi9eLIf2TH0ZFaL14TuisJOWESznCPwqs2AAn_lgVOo2yGLhrKuG1yjgsGrWPIZ0k=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos navideños en blanco, rojo y verde" src="https://via.placeholder.com/200x200?text=Navidenos" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ganchos Navideños</p>
                 <p class="price">S/ 4.00</p>
-                <button class="add-to-cart" data-id="3">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="3" role="button" aria-label="Agregar Ganchos Navideños al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="4" data-category="damas" data-colors='[{"color": "#FFD700", "title": "Amarillo"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos hawaianos vibrantes para un look tropical.">
-                <img alt="Ganchos hawaianos en amarillo vibrante" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVaD4OrbInMGPZXKiKtKplaYEn2Ck-9KCl8p9FJbJIXPMWFCDw9Dd5lrbO-8FfXeJZKvIEr-K5UpFwrCnofwtR30imdZTojz2gxrHqZLSM3qody1gDhWdXAm_C4le7hQ4zKL3imga1TIh_j=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos hawaianos en amarillo vibrante" src="https://via.placeholder.com/200x200?text=Hawaiano" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Gancho Hawaiano</p>
                 <p class="price">S/ 5.00</p>
-                <button class="add-to-cart" data-id="4">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="4" role="button" aria-label="Agregar Gancho Hawaiano al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="5" data-category="damas" data-colors='[{"color": "#5dade2", "title": "Celeste"}, {"color": "#ebf5fb", "title": "Agua"}, {"color": "#FFFFFF", "title": "Blanco"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos acrílicos elegantes en tonos celestes.">
-                <img alt="Ganchos acrílicos en celeste, agua y blanco" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXULCa-2ZSbLgwDDlphVpkyxIs_jH2pp8AIHp25rY65c3VTGPdLnesGcrtuCiDtLbovSHvwiSUpzfWiwyle1UmqeO6d0OEvhBLqp_6k4YBo2QzMGd9aduXbKMXqGVHIB0FKSWvBYE1FNgj_=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos acrílicos en celeste, agua y blanco" src="https://via.placeholder.com/200x200?text=Acrilicos" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ganchos Acrílicos Color Celeste</p>
                 <p class="price">S/ 5.00</p>
-                <button class="add-to-cart" data-id="5">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="5" role="button" aria-label="Agregar Ganchos Acrílicos Color Celeste al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="6" data-category="damas" data-colors='[{"color": "#8d6e63", "title": "Marrón"}, {"color": "#fef9e7", "title": "Crema"}]' data-rating="⭐⭐⭐☆☆ (3.1)" data-description="Ganchos clásicos para un estilo minimalista.">
-                <img alt="Ganchos clásicos en marrón y crema" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUepENF6loS0sqfXxEEZlTcAEQ7R-6iS6rmphnT9YjPc9whL2WIk8tCzVNnHDeaj6AaV3e6-k4yeUx9j6nSHq-l2Tc_t0dGMQLhBQrbdREDnxR65_tbipCAL3NCKmRQYWk5geU5V_jn3EiW=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos clásicos en marrón y crema" src="https://via.placeholder.com/200x200?text=Clasicos" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ganchos</p>
                 <p class="price">S/ 4.50</p>
-                <button class="add-to-cart" data-id="6">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="6" role="button" aria-label="Agregar Ganchos al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="7" data-category="damas" data-colors='[]' data-rating="⭐⭐⭐⭐☆ (4.1)" data-description="Ganchos en forma de flor con diseño inspirado en el sol.">
-                <img alt="Ganchos en forma de flor inspirados en el sol" src="https://lh3.googleusercontent.com/gps-cs/AIky0YX2NRiy9kc9B9F5EY9kAoTjy699I8L7qzIaAFyN6ktzntZDbknG5_v1B6_JgD_hJDZQ7pAonmz2ynxpJqX4tYXVpt2EJISwaxV7Vd5er2HXevBcfzH_2KoEuxffPMG6wVLrMxkXZaJcUGxc=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos en forma de flor inspirados en el sol" src="https://via.placeholder.com/200x200?text=FlorSol" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ganchos Torna Sol en forma de Flor</p>
                 <p class="price">S/ 6.00</p>
-                <button class="add-to-cart" data-id="7">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="7" role="button" aria-label="Agregar Ganchos Torna Sol en forma de Flor al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="8" data-category="damas" data-colors='[{"color": "#FFFF66", "title": "Amarillo"}, {"color": "#CCFF00", "title": "Verde"}, {"color": "#FF8C00", "title": "Anaranjado"}]' data-rating="⭐⭐⭐☆☆ (3.5)" data-description="Ganchos kawai con diseño floral, ideales para niños.">
-                <img alt="Ganchos kawai en forma de flor en amarillo, verde y anaranjado" src="https://lh3.googleusercontent.com/gps-cs/AIky0YXzdeSiF8Ekcd_sbWEkePfXIFlDCt8BeIvwjgW0_jHy1u9d3KWkRPGKY0IPp8ADAmGFn46hFm8U5vXqhoZ738QBNnwuwb-UXng4k1wKXRwyarfw7ST9PYntIH_SA_XEF0lDF6STVaLz16z2=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos kawai en forma de flor en amarillo, verde y anaranjado" src="https://via.placeholder.com/200x200?text=Kawai" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ganchos Kawai en forma de Flor</p>
                 <p class="price">S/ 4.50</p>
-                <button class="add-to-cart" data-id="8">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="8" role="button" aria-label="Agregar Ganchos Kawai en forma de Flor al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="9" data-category="damas" data-colors='[{"color": "#FFB347", "title": "Melón"}, {"color": "#FFD700", "title": "Amarillo"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ganchos florales en tonos cálidos para un look vibrante.">
-                <img alt="Ganchos florales en melón y amarillo" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUem5vYUL5I1PM57jknLifOO7yf5kSVMtMghU4lP6w0ZMUkV2L9UYoqFLTR_8PcGATvSRKyf0IVg5IYHBQzc5_aND9V8BvtQS47MAT--YXhLlrk645yFo2vaWRADuVRrnbiL5rs4ubhXvU=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
+                <img alt="Ganchos florales en melón y amarillo" src="https://via.placeholder.com/200x200?text=Florales" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ganchos de Flores</p>
                 <p class="price">S/ 5.00</p>
-                <button class="add-to-cart" data-id="9">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="9" role="button" aria-label="Agregar Ganchos de Flores al carrito">Agregar al carrito</button>
             </div>
             <!-- Categoría: Niñas -->
             <div class="product" data-id="14" data-category="ninas" data-colors='[]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Mini ganchitos florales para destacar tu peinado.">
                 <img alt="Par de mini ganchitos en forma de flor" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVcDqGO_EKNry0Eb-BkdsNH0V0lOhwW7AM5WEqz8IiNlbpTs2U3Io9_kt4yCGgt5haYI5RgwRDHv-LMBqc5bvmX245QMyriwIoyJyniPQH9cJJ9iCC2fC8hY06M9BU9nFd6NhCLGVGCC34N=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Par de mini ganchitos en forma de flor</p>
                 <p class="price">S/ 3.00</p>
-                <button class="add-to-cart" data-id="14">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="14" role="button" aria-label="Agregar Par de mini ganchitos en forma de flor al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="15" data-category="ninas" data-colors='[]' data-rating="⭐⭐⭐☆☆ (3.5)" data-description="Ganchitos en forma de mariposa, perfectos para peinados infantiles.">
                 <img alt="Mini ganchitos en forma de mariposa" src="https://lh3.googleusercontent.com/gps-cs/AIky0YW1eFtqiwT_PM-xOZnd2iVogh-XQVJclLEtgsh0i5wUGm9NvOCot9LJLfDmZE58abznArTin0EgjEMw3HuKeK9_9hoODK0kla3nM-GYGSvA8_xXCBmu_qiSuoHzgpSaO_2EtqXLAjnCs34l=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Mini ganchitos en forma de mariposa</p>
                 <p class="price">S/ 2.00</p>
-                <button class="add-to-cart" data-id="15">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="15" role="button" aria-label="Agregar Mini ganchitos en forma de mariposa al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="16" data-category="ninas" data-colors='[]' data-rating="⭐⭐⭐☆☆ (3.3)" data-description="Mini ganchitos versátiles para cualquier ocasión.">
                 <img alt="Mini ganchitos versátiles" src="https://lh3.googleusercontent.com/gps-cs/AIky0YUgnWieVRURnUHds0U4E5FROmRmvztpc0ynONqB5wFO-tvCmbrBn0-E971IAl2YG7r7cobC9Hx-g0AbDpTP71ukEEb6n20lHQz-aPBoI5xDWtVwABfSJFIbqdRT6_YJzOT7x8uhaX-KBSLE=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Mini ganchitos</p>
                 <p class="price">S/ 1.50</p>
-                <button class="add-to-cart" data-id="16">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="16" role="button" aria-label="Agregar Mini ganchitos al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="17" data-category="ninas" data-colors='[{"color": "#FFC0CB", "title": "Rosa Pastel"}, {"color": "#FFD700", "title": "Amarillo"}, {"color": "#00BFFF", "title": "Azul"}, {"color": "#FF4500", "title": "Naranja"}, {"color": "#008000", "title": "Verde"}]' data-rating="⭐⭐⭐⭐☆ (4.0)" data-description="Ligas en colores pasteles y fuertes, ideales para cualquier estilo.">
                 <img alt="Ligas en colores pasteles y fuertes" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVwhLWhfaBVh3ChmdRjktxd6WCi7W6fTmz2_7TvWPHTT_-3tX1zci-DGspLNMmn3SpAYgh9RN5G_lHRBehTbWzF16lZ9CNiBbjgj5-EVSXMU3aVjCsYaPQ5Maahznx9Fi79zzSnwLxM_nkC=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Ligas colores pasteles y fuertes</p>
                 <p class="price">S/ 1.00</p>
-                <button class="add-to-cart" data-id="17">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="17" role="button" aria-label="Agregar Ligas colores pasteles y fuertes al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="18" data-category="ninas" data-colors='[{"color": "#000000", "title": "Negro"}]' data-rating="⭐⭐⭐☆☆ (3.3)" data-description="Colets negros clásicos y resistentes.">
                 <img alt="Colets negros clásicos" src="https://lh3.googleusercontent.com/gps-cs/AIky0YWE3Z0a1qVkSdmBI9RQzayKeT8bgvXn5RTJNXmMJjHG9uzg5VUrwt4-PKEq6AdcYPITi3LkJvKtdxDXq6PucsAOpzZGm2J8QGEYCR4Ff59f3YXXaKQ_Ww8lgm4vOYlRuyCNXxPuyWPFWf23=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Colets negros</p>
                 <p class="price">S/ 1.00</p>
-                <button class="add-to-cart" data-id="18">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="18" role="button" aria-label="Agregar Colets negros al carrito">Agregar al carrito</button>
             </div>
             <div class="product" data-id="19" data-category="ninas" data-colors='[{"color": "#FFB6C1", "title": "Rosa Pastel"}, {"color": "#87CEFA", "title": "Azul Pastel"}, {"color": "#98FB98", "title": "Verde Pastel"}]' data-rating="⭐⭐⭐☆☆ (3.4)" data-description="Colets en tonos pasteles para un look suave y elegante.">
                 <img alt="Colets en tonos pasteles rosa, azul y verde" src="https://lh3.googleusercontent.com/gps-cs/AIky0YVVXgYaHEulEuraO7tX6LShXlnoogs6cvwc7jryv8vOVwEt2wCEPWyj0ihUEHTjGMKv0HpL3uglAD96vZsANfdnMrLB4hRI1quw3OaPX-ewOFjUY9eF2ggyG4sMZLcBfJ8amsKoKsAgOXPG=w2000-h2000-p-k-no" onerror="this.src='https://via.placeholder.com/200x200?text=Producto'" loading="lazy"/>
                 <p>Colets colores pasteles</p>
                 <p class="price">S/ 1.00</p>
-                <button class="add-to-cart" data-id="19">Agregar al carrito</button>
+                <button class="add-to-cart" data-id="19" role="button" aria-label="Agregar Colets colores pasteles al carrito">Agregar al carrito</button>
             </div>
         </div>
 
@@ -832,9 +830,9 @@
         </div>
 
         <!-- Product Modal -->
-<div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal" id="colorModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <span class="close-btn" role="button" aria-label="Cerrar modal" tabindex="0">×</span>
                 <img id="modalImage" alt="" src="">
                 <h3 id="modalTitle"></h3>
                 <p class="description" id="modalDescription"></p>
@@ -853,7 +851,7 @@
         <!-- View All Products Modal -->
  <div class="view-all-modal" id="viewAllModal" role="dialog" aria-labelledby="viewAllModalTitle" aria-hidden="true">
             <div class="view-all-modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <span class="close-btn" role="button" aria-label="Cerrar modal" tabindex="0">×</span>
                 <h2 id="viewAllModalTitle">Todos los Productos</h2>
                 <div class="search-container">
                     <input type="text" class="search-input" id="productSearch" placeholder="Buscar productos..." aria-label="Buscar productos">
@@ -873,7 +871,7 @@
         <!-- Clips Damas Modal -->
  <div class="clips-damas-modal" id="clipsDamasModal" role="dialog" aria-labelledby="clipsDamasModalTitle" aria-hidden="true">
             <div class="clips-damas-modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <span class="close-btn" role="button" aria-label="Cerrar modal" tabindex="0">×</span>
                 <h2 id="clipsDamasModalTitle">CLIPS DAMAS</h2>
                 <div class="search-container">
                     <input type="text" class="search-input" id="clipsDamasSearch" placeholder="Buscar en Clips Damas..." aria-label="Buscar en Clips Damas">
@@ -893,7 +891,7 @@
         <!-- Clips Niñas Modal -->
  <div class="clips-ninas-modal" id="clipsNinasModal" role="dialog" aria-labelledby="clipsNinasModalTitle" aria-hidden="true">
             <div class="clips-ninas-modal-content">
-                <span class="close-btn" aria-label="Cerrar modal">×</span>
+                <span class="close-btn" role="button" aria-label="Cerrar modal" tabindex="0">×</span>
                 <h2 id="clipsNinasModalTitle">CLIPS NIÑAS</h2>
                 <div class="search-container">
                     <input type="text" class="search-input" id="clipsNinasSearch" placeholder="Buscar en Clips Niñas..." aria-label="Buscar en Clips Niñas">
@@ -911,615 +909,647 @@
         </div>
 
         <!-- Cart Section -->
-<section id="cart" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
+ <section id="cart" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
             <h2 id="cartTitle">Carrito de Compras</h2>
             <div style="margin:10px 0;">
-                <input id="client-name" placeholder="Nombre del cliente" type="text"/>
-                <input id="client-dni" placeholder="DNI del cliente (8 dígitos)" type="text"/>
+                <input id="client-name" placeholder="Nombre del cliente" type="text" aria-label="Nombre del cliente"/>
+                <input id="client-dni" placeholder="DNI del cliente (8 dígitos)" type="text" aria-label="DNI del cliente"/>
             </div>
             <div id="cart-items"></div>
             <p id="cart-total">Total: S/ 0.00</p>
-            <button id="order-button">Realizar Pedido</button>
+            <button id="order-button" role="button" aria-label="Realizar pedido">Realizar Pedido</button>
         </section>
 
         <!-- Loading Spinner -->
  <div id="loading-spinner"></div>
+    </div>
+<script>
+$(document).ready(function() {
+    // Cart Management
+    function getCart() {
+        try {
+            return JSON.parse(localStorage.getItem('cart') || '[]');
+        } catch (e) {
+            console.error('Error accessing localStorage:', e);
+            return [];
+        }
+    }
 
-</div>
+    function saveCart(cart) {
+        try {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        } catch (e) {
+            console.error('Error saving to localStorage:', e);
+        }
+    }
 
- <script>
-        $(document).ready(function() {
-            // Cart Management
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    let cart = getCart();
+    const whatsappNumber = '51975842622';
 
-            function formatCurrency(amount) {
-                return `S/ ${parseFloat(amount).toFixed(2)}`;
-            }
+    function formatCurrency(amount) {
+        return `S/ ${parseFloat(amount).toFixed(2)}`;
+    }
 
-            function updateCartCounter() {
-                const totalItems = cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
-                $('#cartCounter').text(totalItems);
-            }
+    function updateCartCounter() {
+        const totalItems = cart.reduce((sum, item) => sum + parseInt(item.quantity), 0);
+        $('#cartCounter').text(totalItems);
+    }
 
-            function updateCart() {
-                let cartItemsHtml = '';
-                let total = 0;
-                cart.forEach(item => {
-                    cartItemsHtml += `
-                        <div class="cart-item">
-                            <div class="product-info">
-                                <img alt="${item.name}" src="${item.image}"/>
-                                <div class="product-details">
-                                    <p style="margin: 0; font-weight: bold;">${item.name}</p>
-                                    <p style="margin: 0;">Precio unitario: ${formatCurrency(item.price)}</p>
-                                    <p style="margin: 0;">Cantidad: ${item.quantity}</p>
-                                    ${item.color ? `<p style="margin: 0;">Color: ${item.color}</p>` : ''}
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="increase-quantity" data-product="${item.id}">+</button>
-                                <button class="decrease-quantity" data-product="${item.id}">-</button>
-                                <button class="remove-item" data-product="${item.id}">🗑️ Eliminar</button>
-                            </div>
+    function updateCart() {
+        let cartItemsHtml = '';
+        let total = 0;
+        cart.forEach(item => {
+            cartItemsHtml += `
+                <div class="cart-item">
+                    <div class="product-info">
+                        <img alt="${item.name}" src="${item.image}"/>
+                        <div class="product-details">
+                            <p style="margin: 0; font-weight: bold;">${item.name}</p>
+                            <p style="margin: 0;">Precio unitario: ${formatCurrency(item.price)}</p>
+                            <p style="margin: 0;">Cantidad: ${item.quantity}</p>
+                            ${item.color ? `<p style="margin: 0;">Color: ${item.color}</p>` : ''}
                         </div>
-                    `;
-                    total += item.price * item.quantity;
-                });
-                $('#cart-items').html(cartItemsHtml || '<p>El carrito está vacío.</p>');
-                $('#cart-total').text(`Total: ${formatCurrency(total)}`);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCounter();
-            }
+                    </div>
+                    <div class="actions">
+                        <button class="increase-quantity" data-product="${item.id}" role="button" aria-label="Aumentar cantidad de ${item.name}">+</button>
+                        <button class="decrease-quantity" data-product="${item.id}" role="button" aria-label="Disminuir cantidad de ${item.name}">-</button>
+                        <button class="remove-item" data-product="${item.id}" role="button" aria-label="Eliminar ${item.name} del carrito">🗑️ Eliminar</button>
+                    </div>
+                </div>
+            `;
+            total += item.price * item.quantity;
+        });
+        $('#cart-items').html(cartItemsHtml || '<p>El carrito está vacío.</p>');
+        $('#cart-total').text(`Total: ${formatCurrency(total)}`);
+        saveCart(cart);
+        updateCartCounter();
+    }
 
-            $(document).on('click', '.increase-quantity', function() {
-                const productId = $(this).data('product');
-                let product = cart.find(item => item.id === productId);
-                if (product) {
-                    product.quantity++;
-                    updateCart();
-                }
-            });
+    $(document).on('click', '.increase-quantity', function() {
+        const productId = $(this).data('product');
+        let product = cart.find(item => item.id === productId);
+        if (product) {
+            product.quantity++;
+            updateCart();
+        }
+    });
 
-            $(document).on('click', '.decrease-quantity', function() {
-                const productId = $(this).data('product');
-                let product = cart.find(item => item.id === productId);
-                if (product) {
-                    product.quantity--;
-                    if (product.quantity === 0) {
-                        cart = cart.filter(item => item.id !== productId);
-                    }
-                    updateCart();
-                }
-            });
-
-            $(document).on('click', '.remove-item', function() {
-                const productId = $(this).data('product');
+    $(document).on('click', '.decrease-quantity', function() {
+        const productId = $(this).data('product');
+        let product = cart.find(item => item.id === productId);
+        if (product) {
+            product.quantity--;
+            if (product.quantity === 0) {
                 cart = cart.filter(item => item.id !== productId);
-                updateCart();
-            });
-
-            window.toggleCart = function() {
-                $('#cart').toggle();
-                $('#cart').attr('aria-hidden', $('#cart').is(':hidden'));
-                if (!$('#cart').is(':hidden')) {
-                    $('#client-name').focus();
-                }
-            };
-
-            $('#order-button').click(function() {
-                const clientName = $('#client-name').val().trim();
-                const clientDni = $('#client-dni').val().trim();
-                if (!clientName || !clientDni) {
-                    alert("Por favor, complete nombre y DNI.");
-                    return;
-                }
-                if (!/^\d{8}$/.test(clientDni)) {
-                    alert("El DNI debe tener exactamente 8 dígitos.");
-                    return;
-                }
-                if (cart.length === 0) {
-                    alert("El carrito está vacío. Agregue productos antes de realizar el pedido.");
-                    return;
-                }
-
-                let fecha = new Date();
-                let fechaStr = fecha.toLocaleDateString();
-                let horaStr = fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-                const enLetras = (n) => {
-                    const parts = n.toFixed(2).split('.');
-                    return `${Number(parts[0])} CON ${parts[1]}/100 SOLES`;
-                };
-
-                let boletaHtml = `
-                    <div style="font-family: monospace; font-size: 14px; line-height: 1.4; text-align: left;">
-                        <h3 style="text-align: center; margin-bottom: 5px;">BOLETA DE VENTA ELECTRÓNICA</h3>
-                        <div style="text-align: center; margin: 15px 0;">
-                            <img id="qr-image" src="https://i.ibb.co/Kz9NwFym/yape-qr.jpg" style="width: 200px; border-radius: 10px;"/>
-                            <p style="margin: 5px 0; font-size: 12px;">Paga aquí con Yape</p>
-                            <p style="margin: 0; font-size: 12px;">Jhonny David Palacios Gutierrez</p>
-                        </div>
-                        <p style="margin:0;"><strong>CLIENTE:</strong> ${clientName}</p>
-                        <p style="margin:0;"><strong>DNI:</strong> ${clientDni}</p>
-                        <p style="margin:0;"><strong>FECHA:</strong> ${fechaStr}   <strong>HORA:</strong> ${horaStr}</p>
-                        <hr/>
-                        <p style="margin: 0;"><strong>Cant U.M PRODUCTO P.U. TOTAL</strong></p>`;
-                cart.forEach(item => {
-                    boletaHtml += `
-                        <p style="margin: 0;">${item.quantity} UNIDAD ${item.name.substring(0,24)} ${formatCurrency(item.price)} ${formatCurrency(item.price * item.quantity)}</p>`;
-                });
-                boletaHtml += `
-                        <hr/>
-                        <table style="width: 100%; font-size: 14px;">
-                            <tr>
-                                <td style="text-align: left;"><strong>TOTAL (S/)</strong></td>
-                                <td style="text-align: right;"><strong>${formatCurrency(total)}</strong></td>
-                            </tr>
-                        </table>
-                        <hr/>
-                        <p style="margin: 0;"><strong>SON:</strong> ${enLetras(total)}</p>
-                        <button id="capture-button">📸 Capturar Imagen</button>
-                        <button onclick="window.print()">🖨 Imprimir</button>
-                        <button id="confirm-purchase">Confirmar Compra</button>
-                    </div>`;
-
-                const modal = document.createElement('div');
-                modal.id = "boleta-modal";
-                modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:2000;";
-                modal.innerHTML = boletaHtml;
-                document.body.appendChild(modal);
-
-                $('#capture-button').click(function() {
-                    $('#loading-spinner').show();
-                    const contentDiv = modal.querySelector('div');
-                    const prevMaxHeight = contentDiv.style.maxHeight;
-                    const prevOverflow = contentDiv.style.overflowY;
-                    contentDiv.style.maxHeight = 'none';
-                    contentDiv.style.overflowY = 'visible';
-                    html2canvas(contentDiv, {
-                        useCORS: true,
-                        allowTaint: false,
-                        scale: 2
-                    }).then(canvas => {
-                        contentDiv.style.maxHeight = prevMaxHeight;
-                        contentDiv.style.overflowY = prevOverflow;
-                        $('#loading-spinner').hide();
-                        const link = document.createElement('a');
-                        link.download = 'boleta.png';
-                        link.href = canvas.toDataURL('image/png');
-                        link.click();
-                    }).catch(error => {
-                        $('#loading-spinner').hide();
-                        console.error('Error al capturar:', error);
-                        alert('No se pudo capturar la boleta. Por favor, intenta de nuevo.');
-                    });
-                });
-
-                $('#confirm-purchase').click(function() {
-                    let orderDetails = `Hola! 👋 Quiero realizar un pedido:\n\nCliente: ${clientName}\nDNI: ${clientDni}\n\nProductos:\n`;
-                    cart.forEach(item => {
-                        orderDetails += `${item.quantity} x ${item.name} - ${formatCurrency(item.price * item.quantity)}\n`;
-                    });
-                    orderDetails += `\nTotal: ${formatCurrency(total)}`;
-                    orderDetails += `\n\nAdjuntar: (captura de boleta)📸 (pago electrónico)💳`;
-                    let whatsappURL = `https://wa.me/51975842622?text=${encodeURIComponent(orderDetails)}`;
-                    window.open(whatsappURL, '_blank');
-                    document.body.removeChild(modal);
-                    cart = [];
-                    localStorage.removeItem('cart');
-                    updateCart();
-                    const successMsg = document.createElement('div');
-                    successMsg.textContent = "✅ Mensaje de WhatsApp listo";
-                    successMsg.style = "position:fixed; top:20px; right:20px; background:#4CAF50; color:white; padding:10px 20px; border-radius:5px; font-size:16px; z-index:3000;";
-                    document.body.appendChild(successMsg);
-                    setTimeout(() => {
-                        document.body.removeChild(successMsg);
-                        toggleCart();
-                    }, 2000);
-                });
-
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        document.body.removeChild(modal);
-                    }
-                });
-            });
-
-            // Carousel functionality
-            const slides = document.querySelector('.carousel .slides');
-            const dots = document.querySelectorAll('.carousel .dots span');
-            let currentIndex = 0;
-
-            function showSlide(index) {
-                slides.style.transform = `translateX(-${index * 100}%)`;
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
             }
-
-            dots.forEach((dot, i) => {
-                dot.addEventListener('click', () => {
-                    currentIndex = i;
-                    showSlide(currentIndex);
-                });
-            });
-
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % dots.length;
-                showSlide(currentIndex);
-            }, 5000);
-
-            // Keyboard navigation for carousel
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    currentIndex = (currentIndex - 1 + dots.length) % dots.length;
-                    showSlide(currentIndex);
-                } else if (e.key === 'ArrowRight') {
-                    currentIndex = (currentIndex + 1) % dots.length;
-                    showSlide(currentIndex);
-                }
-            });
-
-            // Product Modal functionality
-            const modal = document.getElementById('colorModal');
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalRating = document.getElementById('modalRating');
-            const modalPrice = document.getElementById('modalPrice');
-            const modalColors = document.getElementById('modalColors');
-            const modalAddCart = document.getElementById('modalAddCart');
-            const decreaseQty = document.getElementById('decreaseQty');
-            const increaseQty = document.getElementById('increaseQty');
-            const quantityInput = document.getElementById('quantityInput');
-            const closeBtn = document.querySelector('.modal .close-btn');
-
-            let selectedColor = null;
-
-            function openProductModal(productId) {
-                const product = document.querySelector(`.product[data-id="${productId}"]`);
-                if (!product) return;
-                const id = product.getAttribute('data-id');
-                const name = product.querySelector('p').textContent;
-                const price = parseFloat(product.querySelector('.price').textContent.replace('S/ ', ''));
-                const image = product.querySelector('img').src;
-                const alt = product.querySelector('img').alt;
-                const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
-                const rating = product.getAttribute('data-rating');
-                const description = product.getAttribute('data-description');
-
-                modalImage.src = image;
-                modalImage.alt = alt;
-                modalTitle.textContent = name;
-                modalDescription.textContent = description;
-                modalRating.textContent = rating;
-                modalPrice.textContent = `S/ ${price.toFixed(2)}`;
-                modalAddCart.setAttribute('data-id', id);
-                modalAddCart.setAttribute('data-name', name);
-                modalAddCart.setAttribute('data-price', price);
-                modalAddCart.setAttribute('data-img', image);
-
-                modalColors.innerHTML = colors.map(color => 
-                    `<span class="color-circle" style="background-color: ${color.color};">${color.title}" data-title="${color.title}" data-color="${color.color}"></span>`
-                ).join('');
-                modalColors.style.display = colors.length === 0 ? 'none' : 'flex';
-
-                quantityInput.value = 1;
-                selectedColor = null;
-                modalColors.querySelectorAll('.color-circle').forEach(circle => {
-                    circle.classList.remove('selected');
-                    circle.addEventListener('click', () => {
-                        modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
-                        circle.classList.add('selected');
-                        selectedColor = circle.dataset.color;
-                    });
-                });
-
-                modal.style.display = 'flex';
-                modal.setAttribute('aria-hidden', 'false');
-                modal.querySelector('.modal-content').focus();
-            }
-
-            // Quantity controls
-            decreaseQty.addEventListener('click', () => {
-                let qty = parseInt(quantityInput.value);
-                if (qty > 1) {
-                    quantityInput.value = qty - 1;
-                }
-            });
-
-            increaseQty.addEventListener('click', () => {
-                let qty = parseInt(quantityInput.value);
-                quantityInput.value = qty + 1;
-            });
-
-            quantityInput.addEventListener('input', () => {
-                if (quantityInput.value < 1) {
-                    quantityInput.value = 1;
-                }
-            });
-
-            // Add to cart
-            modalAddCart.addEventListener('click', function() {
-                const id = modalAddCart.getAttribute('data-id');
-                const name = modalAddCart.getAttribute('data-name');
-                const price = parseFloat(modalAddCart.getAttribute('data-price'));
-                const image = modalAddCart.getAttribute('data-img');
-                const quantity = parseInt(quantityInput.value);
-                const colors = JSON.parse(document.querySelector(`.product[data-id="${id}"]`).getAttribute('data-colors') || '[]');
-                if (colors.length > 0 && !selectedColor) {
-                    alert('Por favor, selecciona un color antes de añadir al carrito.');
-                    return;
-                }
-                const color = colors.length > 0 ? colors.find(c => c.color === selectedColor).title : 'Ninguno';
-                const existingItem = cart.find(item => item.id === id && item.color === color);
-                if (existingItem) {
-                    existingItem.quantity += quantity;
-                } else {
-                    cart.push({ id, name, price, quantity, image, color });
-                }
-                updateCart();
-                alert(`Añadido al carrito: ${name}, Cantidad: ${quantity}, Color: ${color}, Precio: ${formatCurrency(price * quantity)}`);
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden', 'true');
-            });
-
-            // Close product modal
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-                modal.setAttribute('aria-hidden', 'true');
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    modal.setAttribute('aria-hidden', 'true');
-                }
-            });
-
-            // Product event listeners
-            function attachProductListeners(products) {
-                products.forEach(product => {
-                    product.addEventListener('click', (e) => {
-                        if (e.target.classList.contains('add-to-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
-                        openProductModal(product.getAttribute('data-id'));
-                    });
-                    product.querySelector('.add-to-cart').addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openProductModal(product.getAttribute('data-id'));
-                    });
-                });
-            }
-
-            const allProducts = document.querySelectorAll('.products .product');
-            attachProductListeners(allProducts);
-
-            // View All Products Modal functionality
-            const viewAllModal = document.getElementById('viewAllModal');
-            const viewAllBtn = document.getElementById('viewAllBtn');
-            const viewAllProductsContainer = document.getElementById('viewAllProducts');
-            const viewAllCloseBtn = document.querySelector('.view-all-modal .close-btn');
-            const productSearch = document.getElementById('productSearch');
-            const viewAllSort = document.getElementById('viewAllSort');
-            const viewAllSpinner = document.getElementById('viewAllSpinner');
-
-            function updateViewAllProducts(searchTerm = '', sort = 'default') {
-                viewAllSpinner.style.display = 'block';
-                viewAllProductsContainer.innerHTML = '';
-                setTimeout(() => {
-                    let filteredProducts = Array.from(allProducts).filter(product => {
-                        const name = product.querySelector('p').textContent.toLowerCase();
-                        const description = product.getAttribute('data-description').toLowerCase();
-                        return name.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase());
-                    });
-
-                    if (sort === 'price-asc') {
-                        filteredProducts.sort((a, b) => parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')));
-                    } else if (sort === 'price-desc') {
-                        filteredProducts.sort((a, b) => parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')));
-                    }
-
-                    if (filteredProducts.length === 0) {
-                        viewAllProductsContainer.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
-                        viewAllSpinner.style.display = 'none';
-                        return;
-                    }
-
-                    filteredProducts.forEach(product => {
-                        const productClone = product.cloneNode(true);
-                        viewAllProductsContainer.appendChild(productClone);
-                    });
-
-                    attachProductListeners(viewAllProductsContainer.querySelectorAll('.product'));
-                    viewAllSpinner.style.display = 'none';
-                }, 500);
-            }
-
-            viewAllBtn.addEventListener('click', () => {
-                productSearch.value = '';
-                viewAllSort.value = 'default';
-                updateViewAllProducts();
-                viewAllModal.style.display = 'flex';
-                viewAllModal.setAttribute('aria-hidden', 'false');
-                productSearch.focus();
-            });
-
-            productSearch.addEventListener('input', () => {
-                updateViewAllProducts(productSearch.value, viewAllSort.value);
-            });
-
-            viewAllSort.addEventListener('change', () => {
-                updateViewAllProducts(productSearch.value, viewAllSort.value);
-            });
-
-            viewAllCloseBtn.addEventListener('click', () => {
-                viewAllModal.style.display = 'none';
-                viewAllModal.setAttribute('aria-hidden', 'true');
-            });
-
-     viewAllModal.addEventListener('click', (e) => {
-                if (e.target === viewAllModal) {
-                    viewAllModal.style.display = 'none';
-                    viewAllModal.setAttribute('aria-hidden', 'true');
-                }
-            });
-
-            // Clips Damas Modal functionality
-            const clipsDamasModal = document.getElementById('clipsDamasModal');
-            const clipsDamasBtn = document.getElementById('clipsDamasBtn');
-            const clipsDamasProductsContainer = document.getElementById('clipsDamasProducts');
-            const clipsDamasCloseBtn = document.querySelector('.clips-damas-modal .close-btn');
-            const clipsDamasSearch = document.getElementById('clipsDamasSearch');
-            const clipsDamasSort = document.getElementById('clipsDamasSort');
-            const damasSpinner = document.getElementById('damasSpinner');
-
-        function updateClipsDamasProducts(searchTerm = '', sort = 'default') {
-                damasSpinner.style.display = 'block';
-                clipsDamasProductsContainer.innerHTML = '';
-                setTimeout(() => {
-
-    let filteredProducts = Array.from(allProducts).filter(product => {
-    const name = product.querySelector('p').textContent.toLowerCase();
-    const description = product.getAttribute('data-description').toLowerCase();
-    const category = product.getAttribute('data-category');
-    return (name.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase())) && category === 'damas';
-});
-
-if (sort === 'price-asc') {
-    filteredProducts.sort((a, b) => parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')));
-} else if (sort === 'price-desc') {
-    filteredProducts.sort((a, b) => parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')));
-}
-
-if (filteredProducts.length === 0) {
-    clipsDamasProductsContainer.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
-    damasSpinner.style.display = 'none';
-    return;
-}
-
-filteredProducts.forEach(product => {
-    const productClone = product.cloneNode(true);
-    clipsDamasProductsContainer.appendChild(productClone);
-});
-
-attachProductListeners(clipsDamasProductsContainer.querySelectorAll('.product'));
-damasSpinner.style.display = 'none';
-}, 500);
-}
-
-clipsDamasBtn.addEventListener('click', () => {
-clipsDamasSearch.value = '';
-clipsDamasSort.value = 'default';
-updateClipsDamasProducts();
-clipsDamasModal.style.display = 'flex';
-clipsDamasModal.setAttribute('aria-hidden', 'false');
-clipsDamasSearch.focus();
-});
-
-clipsDamasSearch.addEventListener('input', () => {
-updateClipsDamasProducts(clipsDamasSearch.value, clipsDamasSort.value);
-});
-
-clipsDamasSort.addEventListener('change', () => {
-updateClipsDamasProducts(clipsDamasSearch.value, clipsDamasSort.value);
-});
-
-clipsDamasCloseBtn.addEventListener('click', () => {
-clipsDamasModal.style.display = 'none';
-clipsDamasModal.setAttribute('aria-hidden', 'true');
-});
-
-clipsDamasModal.addEventListener('click', (e) => {
-if (e.target === clipsDamasModal) {
-    clipsDamasModal.style.display = 'none';
-    clipsDamasModal.setAttribute('aria-hidden', 'true');
-}
-});
-
-// Clips Niñas Modal functionality
-const clipsNinasModal = document.getElementById('clipsNinasModal');
-const clipsNinasBtn = document.getElementById('clipsNinasBtn');
-const clipsNinasProductsContainer = document.getElementById('clipsNinasProducts');
-const clipsNinasCloseBtn = document.querySelector('.clips-ninas-modal .close-btn');
-const clipsNinasSearch = document.getElementById('clipsNinasSearch');
-const clipsNinasSort = document.getElementById('clipsNinasSort');
-const ninasSpinner = document.getElementById('ninasSpinner');
-
-function updateClipsNinasProducts(searchTerm = '', sort = 'default') {
-ninasSpinner.style.display = 'block';
-clipsNinasProductsContainer.innerHTML = '';
-setTimeout(() => {
-    let filteredProducts = Array.from(allProducts).filter(product => {
-        const name = product.querySelector('p').textContent.toLowerCase();
-        const description = product.getAttribute('data-description').toLowerCase();
-        const category = product.getAttribute('data-category');
-        return (name.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase())) && category === 'ninas';
+            updateCart();
+        }
     });
 
- if (sort === 'price-asc') {
-        filteredProducts.sort((a, b) => parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')));
-    } else if (sort === 'price-desc') {
-        filteredProducts.sort((a, b) => parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')));
-    }
-
- if (filteredProducts.length === 0) {
-        clipsNinasProductsContainer.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
-        ninasSpinner.style.display = 'none';
-        return;
-    }
-
- filteredProducts.forEach(product => {
-        const productClone = product.cloneNode(true);
-        clipsNinasProductsContainer.appendChild(productClone);
+    $(document).on('click', '.remove-item', function() {
+        const productId = $(this).data('product');
+        cart = cart.filter(item => item.id !== productId);
+        updateCart();
     });
 
- attachProductListeners(clipsNinasProductsContainer.querySelectorAll('.product'));
-    ninasSpinner.style.display = 'none';
-}, 500);
-}
+    function trapFocus(element) {
+        const focusableElements = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+        element.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                if (e.shiftKey && document.activeElement === firstFocusable) {
+                    e.preventDefault();
+                    lastFocusable.focus();
+                } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+                    e.preventDefault();
+                    firstFocusable.focus();
+                }
+            }
+        });
+    }
 
-clipsNinasBtn.addEventListener('click', () => {
-clipsNinasSearch.value = '';
-clipsNinasSort.value = 'default';
-updateClipsNinasProducts();
-clipsNinasModal.style.display = 'flex';
-clipsNinasModal.setAttribute('aria-hidden', 'false');
-clipsNinasSearch.focus();
-});
+    window.toggleCart = function() {
+        $('#cart').toggle();
+        $('#cart').attr('aria-hidden', $('#cart').is(':hidden'));
+        if (!$('#cart').is(':hidden')) {
+            $('#client-name').focus();
+            trapFocus(document.getElementById('cart'));
+        }
+    };
 
-clipsNinasSearch.addEventListener('input', () => {
-updateClipsNinasProducts(clipsNinasSearch.value, clipsNinasSort.value);
-});
+    $('#order-button').click(function() {
+        const clientName = $('#client-name').val().trim();
+        const clientDni = $('#client-dni').val().trim();
+        if (!clientName || !clientDni) {
+            alert("Por favor, complete nombre y DNI.");
+            return;
+        }
+        if (!/^\d{8}$/.test(clientDni)) {
+            alert("El DNI debe tener exactamente 8 dígitos.");
+            return;
+        }
+        if (cart.length === 0) {
+            alert("El carrito está vacío. Agregue productos antes de realizar el pedido.");
+            return;
+        }
 
-clipsNinasSort.addEventListener('change', () => {
-updateClipsNinasProducts(clipsNinasSearch.value, clipsNinasSort.value);
-});
+        let fecha = new Date();
+        let fechaStr = fecha.toLocaleDateString();
+        let horaStr = fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-clipsNinasCloseBtn.addEventListener('click', () => {
-clipsNinasModal.style.display = 'none';
-clipsNinasModal.setAttribute('aria-hidden', 'true');
-});
+        const enLetras = (n) => {
+            const parts = n.toFixed(2).split('.');
+            return `${Number(parts[0])} CON ${parts[1]}/100 SOLES`;
+        };
 
-clipsNinasModal.addEventListener('click', (e) => {
-if (e.target === clipsNinasModal) {
-    clipsNinasModal.style.display = 'none';
-    clipsNinasModal.setAttribute('aria-hidden', 'true');
-}
-});
+        let boletaHtml = `
+            <div style="font-family: monospace; font-size: 14px; line-height: 1.4; text-align: left;">
+                <h3 style="text-align: center; margin-bottom: 5px;">BOLETA DE VENTA ELECTRÓNICA</h3>
+                <div style="text-align: center; margin: 15px 0;">
+                    <img id="qr-image" src="https://via.placeholder.com/200x200?text=QRCode" style="width: 200px; border-radius: 10px;"/>
+                    <p style="margin: 5px 0; font-size: 12px;">Paga aquí con Yape</p>
+                    <p style="margin: 0; font-size: 12px;">Jhonny David Palacios Gutierrez</p>
+                </div>
+                <p style="margin:0;"><strong>CLIENTE:</strong> ${clientName}</p>
+                <p style="margin:0;"><strong>DNI:</strong> ${clientDni}</p>
+                <p style="margin:0;"><strong>FECHA:</strong> ${fechaStr}   <strong>HORA:</strong> ${horaStr}</p>
+                <hr/>
+                <p style="margin: 0;"><strong>Cant U.M PRODUCTO P.U. TOTAL</strong></p>`;
+        cart.forEach(item => {
+            boletaHtml += `
+                <p style="margin: 0;">${item.quantity} UNIDAD ${item.name.substring(0,24)} ${formatCurrency(item.price)} ${formatCurrency(item.price * item.quantity)}</p>`;
+        });
+        boletaHtml += `
+                <hr/>
+                <table style="width: 100%; font-size: 14px;">
+                    <tr>
+                        <td style="text-align: left;"><strong>TOTAL (S/)</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(total)}</strong></td>
+                    </tr>
+                </table>
+                <hr/>
+                <p style="margin: 0;"><strong>SON:</strong> ${enLetras(total)}</p>
+                <button id="capture-button">📸 Capturar Imagen</button>
+                <button onclick="window.print()">🖨 Imprimir</button>
+                <button id="confirm-purchase">Confirmar Compra</button>
+            </div>`;
 
-// Search Icon functionality
-document.querySelector('.search-icon').addEventListener('click', () => {
-productSearch.value = '';
-viewAllSort.value = 'default';
-updateViewAllProducts();
-viewAllModal.style.display = 'flex';
-viewAllModal.setAttribute('aria-hidden', 'false');
-productSearch.focus();
-});
+        const modal = document.createElement('div');
+        modal.id = "boleta-modal";
+        modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:2000;";
+        modal.innerHTML = boletaHtml;
+        document.body.appendChild(modal);
 
-// Initialize
-updateCart();
+        $('#capture-button').click(function() {
+            $('#loading-spinner').show();
+            const contentDiv = modal.querySelector('div');
+            const prevMaxHeight = contentDiv.style.maxHeight;
+            const prevOverflow = contentDiv.style.overflowY;
+            contentDiv.style.maxHeight = 'none';
+            contentDiv.style.overflowY = 'visible';
+            html2canvas(contentDiv, {
+                useCORS: true,
+                allowTaint: false,
+                scale: 2
+            }).then(canvas => {
+                contentDiv.style.maxHeight = prevMaxHeight;
+                contentDiv.style.overflowY = prevOverflow;
+                $('#loading-spinner').hide();
+                const link = document.createElement('a');
+                link.download = 'boleta.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(error => {
+                $('#loading-spinner').hide();
+                console.error('Error al capturar:', error);
+                alert('No se pudo capturar la boleta. Por favor, intenta de nuevo.');
+            });
+        });
+
+        $('#confirm-purchase').click(function() {
+            let orderDetails = `Hola! 👋 Quiero realizar un pedido:\n\nCliente: ${clientName}\nDNI: ${clientDni}\n\nProductos:\n`;
+            cart.forEach(item => {
+                orderDetails += `${item.quantity} x ${item.name} - ${formatCurrency(item.price * item.quantity)}\n`;
+            });
+            orderDetails += `\nTotal: ${formatCurrency(total)}`;
+            orderDetails += `\n\nAdjuntar: (captura de boleta)📸 (pago electrónico)💳`;
+            let whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderDetails)}`;
+            window.open(whatsappURL, '_blank');
+            document.body.removeChild(modal);
+            cart = [];
+            saveCart(cart);
+            updateCart();
+            const successMsg = document.createElement('div');
+            successMsg.textContent = "✅ Mensaje de WhatsApp listo";
+            successMsg.style = "position:fixed; top:20px; right:20px; background:#4CAF50; color:white; padding:10px 20px; border-radius:5px; font-size:16px; z-index:3000;";
+            document.body.appendChild(successMsg);
+            setTimeout(() => {
+                document.body.removeChild(successMsg);
+                toggleCart();
+            }, 2000);
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+    });
+
+    // Carousel functionality
+    const slides = document.querySelector('.carousel .slides');
+    const dots = document.querySelectorAll('.carousel .dots span');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            currentIndex = i;
+            showSlide(currentIndex);
+        });
+    });
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % dots.length;
+        showSlide(currentIndex);
+    }, 5000);
+
+    // Keyboard navigation for carousel
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + dots.length) % dots.length;
+            showSlide(currentIndex);
+        } else if (e.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % dots.length;
+            showSlide(currentIndex);
+        }
+    });
+
+    // Product Modal functionality
+    const modal = document.getElementById('colorModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalRating = document.getElementById('modalRating');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalColors = document.getElementById('modalColors');
+    const modalAddCart = document.getElementById('modalAddCart');
+    const decreaseQty = document.getElementById('decreaseQty');
+    const increaseQty = document.getElementById('increaseQty');
+    const quantityInput = document.getElementById('quantityInput');
+    const closeBtn = document.querySelector('.modal .close-btn');
+
+    let selectedColor = null;
+
+    function openProductModal(productId) {
+        const product = document.querySelector(`.product[data-id="${productId}"]`);
+        if (!product) return;
+        const id = product.getAttribute('data-id');
+        const name = product.querySelector('p').textContent;
+        const price = parseFloat(product.querySelector('.price').textContent.replace('S/ ', ''));
+        const image = product.querySelector('img').src;
+        const alt = product.querySelector('img').alt;
+        const colors = JSON.parse(product.getAttribute('data-colors') || '[]');
+        const rating = product.getAttribute('data-rating');
+        const description = product.getAttribute('data-description');
+
+        modalImage.src = image;
+        modalImage.alt = alt;
+        modalTitle.textContent = name;
+        modalDescription.textContent = description;
+        modalRating.textContent = rating;
+        modalPrice.textContent = `S/ ${price.toFixed(2)}`;
+        modalAddCart.setAttribute('data-id', id);
+        modalAddCart.setAttribute('data-name', name);
+        modalAddCart.setAttribute('data-price', price);
+        modalAddCart.setAttribute('data-img', image);
+
+        modalColors.innerHTML = colors.map(color => 
+            `<span class="color-circle" style="background-color: ${color.color};" data-title="${color.title}" data-color="${color.color}"></span>`
+        ).join('');
+        modalColors.style.display = colors.length === 0 ? 'none' : 'flex';
+
+        quantityInput.value = 1;
+        selectedColor = null;
+        modalColors.querySelectorAll('.color-circle').forEach(circle => {
+            circle.classList.remove('selected');
+            circle.addEventListener('click', () => {
+                modalColors.querySelectorAll('.color-circle').forEach(c => c.classList.remove('selected'));
+                circle.classList.add('selected');
+                selectedColor = circle.dataset.color;
+            });
+        });
+
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        modal.querySelector('.modal-content').focus();
+    }
+
+    // Quantity controls
+    decreaseQty.addEventListener('click', () => {
+        let qty = parseInt(quantityInput.value);
+        if (qty > 1) {
+            quantityInput.value = qty - 1;
+        }
+    });
+
+    increaseQty.addEventListener('click', () => {
+        let qty = parseInt(quantityInput.value);
+        quantityInput.value = qty + 1;
+    });
+
+    quantityInput.addEventListener('input', () => {
+        if (quantityInput.value < 1) {
+            quantityInput.value = 1;
+        }
+    });
+
+    // Add to cart
+    modalAddCart.addEventListener('click', function() {
+        const id = modalAddCart.getAttribute('data-id');
+        const name = modalAddCart.getAttribute('data-name');
+        const price = parseFloat(modalAddCart.getAttribute('data-price'));
+        const image = modalAddCart.getAttribute('data-img');
+        const quantity = parseInt(quantityInput.value);
+        const colors = JSON.parse(document.querySelector(`.product[data-id="${id}"]`).getAttribute('data-colors') || '[]');
+        if (colors.length > 0 && !selectedColor) {
+            alert('Por favor, selecciona un color antes de añadir al carrito.');
+            return;
+        }
+        const color = colors.length > 0 ? colors.find(c => c.color === selectedColor).title : 'Ninguno';
+        const existingItem = cart.find(item => item.id === id && item.color === color);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cart.push({ id, name, price, quantity, image, color });
+        }
+        updateCart();
+        alert(`Añadido al carrito: ${name}, Cantidad: ${quantity}, Color: ${color}, Precio: ${formatCurrency(price * quantity)}`);
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Close product modal
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Add keyboard support for close buttons
+    document.querySelectorAll('.close-btn').forEach(btn => {
+        btn.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                btn.click();
+            }
+        });
+    });
+
+    // Product event listeners
+    function attachProductListeners(products) {
+        products.forEach(product => {
+            product.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart') || e.target.classList.contains('quantity-btn') || e.target.classList.contains('quantity-input')) return;
+                openProductModal(product.getAttribute('data-id'));
+            });
+            product.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                e.stopPropagation();
+                openProductModal(product.getAttribute('data-id'));
+            });
+        });
+    }
+
+    const allProducts = document.querySelectorAll('.products .product');
+    attachProductListeners(allProducts);
+
+    // View All Products Modal functionality
+    const viewAllModal = document.getElementById('viewAllModal');
+    const viewAllBtn = document.getElementById('viewAllBtn');
+    const viewAllProductsContainer = document.getElementById('viewAllProducts');
+    const viewAllCloseBtn = document.querySelector('.view-all-modal .close-btn');
+    const productSearch = document.getElementById('productSearch');
+    const viewAllSort = document.getElementById('viewAllSort');
+    const viewAllSpinner = document.getElementById('viewAllSpinner');
+
+    function updateViewAllProducts(searchTerm = '', sort = 'default') {
+        viewAllSpinner.style.display = 'block';
+        viewAllProductsContainer.innerHTML = '';
+        setTimeout(() => {
+            let filteredProducts = Array.from(allProducts).filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                const description = product.getAttribute('data-description').toLowerCase();
+                return name.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase());
+            });
+
+            if (sort === 'price-asc') {
+                filteredProducts.sort((a, b) => parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')));
+            } else if (sort === 'price-desc') {
+                filteredProducts.sort((a, b) => parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')));
+            }
+
+            if (filteredProducts.length === 0) {
+                viewAllProductsContainer.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
+                viewAllSpinner.style.display = 'none';
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                viewAllProductsContainer.appendChild(productClone);
+            });
+
+            attachProductListeners(viewAllProductsContainer.querySelectorAll('.product'));
+            viewAllSpinner.style.display = 'none';
+        }, 500);
+    }
+
+    viewAllBtn.addEventListener('click', () => {
+        productSearch.value = '';
+        viewAllSort.value = 'default';
+        updateViewAllProducts();
+        viewAllModal.style.display = 'flex';
+        viewAllModal.setAttribute('aria-hidden', 'false');
+        productSearch.focus();
+    });
+
+    productSearch.addEventListener('input', () => {
+        updateViewAllProducts(productSearch.value, viewAllSort.value);
+    });
+
+    viewAllSort.addEventListener('change', () => {
+        updateViewAllProducts(productSearch.value, viewAllSort.value);
+    });
+
+    viewAllCloseBtn.addEventListener('click', () => {
+        viewAllModal.style.display = 'none';
+        viewAllModal.setAttribute('aria-hidden', 'true');
+    });
+
+    viewAllModal.addEventListener('click', (e) => {
+        if (e.target === viewAllModal) {
+            viewAllModal.style.display = 'none';
+            viewAllModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Clips Damas Modal functionality
+    const clipsDamasModal = document.getElementById('clipsDamasModal');
+    const clipsDamasBtn = document.getElementById('clipsDamasBtn');
+    const clipsDamasProductsContainer = document.getElementById('clipsDamasProducts');
+    const clipsDamasCloseBtn = document.querySelector('.clips-damas-modal .close-btn');
+    const clipsDamasSearch = document.getElementById('clipsDamasSearch');
+    const clipsDamasSort = document.getElementById('clipsDamasSort');
+    const damasSpinner = document.getElementById('damasSpinner');
+
+    function updateClipsDamasProducts(searchTerm = '', sort = 'default') {
+        damasSpinner.style.display = 'block';
+        clipsDamasProductsContainer.innerHTML = '';
+        setTimeout(() => {
+            let filteredProducts = Array.from(allProducts).filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                const description = product.getAttribute('data-description').toLowerCase();
+                const category = product.getAttribute('data-category');
+                return (name.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase())) && category === 'damas';
+            });
+
+            if (sort === 'price-asc') {
+                filteredProducts.sort((a, b) => parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')));
+            } else if (sort === 'price-desc') {
+                filteredProducts.sort((a, b) => parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')));
+            }
+
+            if (filteredProducts.length === 0) {
+                clipsDamasProductsContainer.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
+                damasSpinner.style.display = 'none';
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                clipsDamasProductsContainer.appendChild(productClone);
+            });
+
+            attachProductListeners(clipsDamasProductsContainer.querySelectorAll('.product'));
+            damasSpinner.style.display = 'none';
+        }, 500);
+    }
+
+    clipsDamasBtn.addEventListener('click', () => {
+        clipsDamasSearch.value = '';
+        clipsDamasSort.value = 'default';
+        updateClipsDamasProducts();
+        clipsDamasModal.style.display = 'flex';
+        clipsDamasModal.setAttribute('aria-hidden', 'false');
+        clipsDamasSearch.focus();
+    });
+
+    clipsDamasSearch.addEventListener('input', () => {
+        updateClipsDamasProducts(clipsDamasSearch.value, clipsDamasSort.value);
+    });
+
+    clipsDamasSort.addEventListener('change', () => {
+        updateClipsDamasProducts(clipsDamasSearch.value, clipsDamasSort.value);
+    });
+
+    clipsDamasCloseBtn.addEventListener('click', () => {
+        clipsDamasModal.style.display = 'none';
+        clipsDamasModal.setAttribute('aria-hidden', 'true');
+    });
+
+    clipsDamasModal.addEventListener('click', (e) => {
+        if (e.target === clipsDamasModal) {
+            clipsDamasModal.style.display = 'none';
+            clipsDamasModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Clips Niñas Modal functionality
+    const clipsNinasModal = document.getElementById('clipsNinasModal');
+    const clipsNinasBtn = document.getElementById('clipsNinasBtn');
+    const clipsNinasProductsContainer = document.getElementById('clipsNinasProducts');
+    const clipsNinasCloseBtn = document.querySelector('.clips-ninas-modal .close-btn');
+    const clipsNinasSearch = document.getElementById('clipsNinasSearch');
+    const clipsNinasSort = document.getElementById('clipsNinasSort');
+    const ninasSpinner = document.getElementById('ninasSpinner');
+
+    function updateClipsNinasProducts(searchTerm = '', sort = 'default') {
+        ninasSpinner.style.display = 'block';
+        clipsNinasProductsContainer.innerHTML = '';
+        setTimeout(() => {
+            let filteredProducts = Array.from(allProducts).filter(product => {
+                const name = product.querySelector('p').textContent.toLowerCase();
+                const description = product.getAttribute('data-description').toLowerCase();
+                const category = product.getAttribute('data-category');
+                return (name.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase())) && category === 'ninas';
+            });
+
+            if (sort === 'price-asc') {
+                filteredProducts.sort((a, b) => parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')));
+            } else if (sort === 'price-desc') {
+                filteredProducts.sort((a, b) => parseFloat(b.querySelector('.price').textContent.replace('S/ ', '')) - parseFloat(a.querySelector('.price').textContent.replace('S/ ', '')));
+            }
+
+            if (filteredProducts.length === 0) {
+                clipsNinasProductsContainer.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
+                ninasSpinner.style.display = 'none';
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const productClone = product.cloneNode(true);
+                clipsNinasProductsContainer.appendChild(productClone);
+            });
+
+            attachProductListeners(clipsNinasProductsContainer.querySelectorAll('.product'));
+            ninasSpinner.style.display = 'none';
+        }, 500);
+    }
+
+    clipsNinasBtn.addEventListener('click', () => {
+        clipsNinasSearch.value = '';
+        clipsNinasSort.value = 'default';
+        updateClipsNinasProducts();
+        clipsNinasModal.style.display = 'flex';
+        clipsNinasModal.setAttribute('aria-hidden', 'false');
+        clipsNinasSearch.focus();
+    });
+
+    clipsNinasSearch.addEventListener('input', () => {
+        updateClipsNinasProducts(clipsNinasSearch.value, clipsNinasSort.value);
+    });
+
+    clipsNinasSort.addEventListener('change', () => {
+        updateClipsNinasProducts(clipsNinasSearch.value, clipsNinasSort.value);
+    });
+
+    clipsNinasCloseBtn.addEventListener('click', () => {
+        clipsNinasModal.style.display = 'none';
+        clipsNinasModal.setAttribute('aria-hidden', 'true');
+    });
+
+    clipsNinasModal.addEventListener('click', (e) => {
+        if (e.target === clipsNinasModal) {
+            clipsNinasModal.style.display = 'none';
+            clipsNinasModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Initialize cart
+    updateCart();
 });
 </script>
 </body>
