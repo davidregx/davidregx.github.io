@@ -1,5 +1,3 @@
-https://davidregx.github.io/
-index.htmldavidregx.
 <html lang="es">
 <head>
     <meta charset="UTF-8">
