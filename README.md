@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html lang="es">
 <head>
-<b:include data='blog' name='all-head-content'/>
-<meta content='width=device-width, initial-scale=1.0' name='viewport'/>
-<title>Tienda Online - Ganchos y Accesorios</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Accesorios</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'/>
 <b:skin><![CDATA[
 /* Reset y base */
 * {
