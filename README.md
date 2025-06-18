@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Accesorios</title>
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' rel='stylesheet'/>
-<b:skin><![CDATA[
+ <style>
 /* Reset y base */
 * {
   box-sizing: border-box;
@@ -771,7 +771,7 @@ html, body {
     transition-duration: 0.01ms !important;
   }
 }
-]]></b:skin>
+</style>
 
 <!-- Preload de recursos críticos -->
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
