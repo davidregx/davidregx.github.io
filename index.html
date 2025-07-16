@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App - Tasks Manager</title>
+  <meta name="theme-color" content="#3b82f6">
+  <meta name="description" content="Progressive Web App for managing your tasks">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --secondary: #f43f5e;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --gray: #64748b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f1f5f9;
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    main {
+      flex: 1;
+      padding: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .add-task {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .add-task input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    
+    .add-task input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    }
+    
+    .add-task button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0 1.25rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .add-task button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .task {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .task:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .task-checkbox {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    
+    .task-text {
+      flex: 1;
+      font-size: 1rem;
+    }
+    
+    .task-text.completed {
+      text-decoration: line-through;
+      color: var(--gray);
+    }
+    
+    .task-delete {
+      color: var(--secondary);
+      background: none;
+      border: none;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    
+    .task-delete:hover {
+      background-color: rgba(244, 63, 94, 0.1);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: var(--gray);
+      font-size: 0.875rem;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--gray);
+    }
+    
+    .empty-state img {
+      max-width: 200px;
+      margin: 0 auto 1rem;
+    }
+    
+    .empty-state p {
+      margin-top: 0.5rem;
+    }
+    
+    .install-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 480px) {
+      .header-content {
+        justify-content: center;
+      }
+      
+      .app-icon {
+        margin-right: 0.5rem;
+      }
+      
+      .install-button {
+        position: static;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="app-icon">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor">
+          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+        </svg>
+      </div>
+      <h1>Todo App</h1>
+    </div>
+    <button id="installButton" class="install-button">Instalar App</button>
+  </header>
+  
+  <main>
+    <div class="add-task">
+      <input type="text" id="taskInput" placeholder="Add a new task..." />
+      <button id="addTaskButton">Add</button>
+    </div>
+    
+    <div id="taskList" class="task-list">
+      <div class="empty-state">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/eae1d9f3-4e8e-4cd8-b11a-a0b35054787a.png" alt="Illustration showing an empty checklist" />
+        <h3>No tasks yet</h3>
+        <p>Add your first task to get started</p>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2024 Todo App</p>
+  </footer>
+
+  <script>
+    // Datos de la aplicación
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const taskInput = document.getElementById('taskInput');
+    const addTaskButton = document.getElementById('addTaskButton');
+    const taskList = document.getElementById('taskList');
+    const installButton = document.getElementById('installButton');
+    let deferredPrompt;
+    
+    // Cargar tareas al iniciar
+    renderTasks();
+    
+    // Evento para añadir tarea
+    addTaskButton.addEventListener('click', addTask);
+    taskInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') addTask();
+    });
+    
+    // Evento para instalar la app
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      showInstallPromotion();
+    });
+    
+    installButton.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        showInstallPromotion();
+        deferredPrompt.prompt();
+        const choiceResult = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installButton.style.display = 'none';
+        }
+        deferredPrompt = null;
+      }
+    });
+    
+    // Funciones de la app
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (text) {
+        tasks.push({
+          id: Date.now(),
+          text,
+          completed: false
+        });
+        
+        saveTasks();
+        taskInput.value = '';
+        renderTasks();
+      }
+    }
+    
+    function toggleTask(id) {
+      const taskIndex = tasks.findIndex(task => task.id === id);
+      if (taskIndex > -1) {
+        tasks[taskIndex].completed = !tasks[taskIndex].completed;
+        saveTasks();
+        renderTasks();
+      }
+    }
+    
+    function deleteTask(id) {
+      tasks = tasks.filter(task => task.id !== id);
+      saveTasks();
+      renderTasks();
+    }
+    
+    function saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+    
+    function showInstallPromotion() {
+      installButton.style.display = 'block'; 
+      installButton.textContent = '¡Instalar App!';
+    }
+
+    function renderTasks() {
+      if (tasks.length === 0) {
+        taskList.innerHTML = `
+          <div class="empty-state">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/240e500a-453d-4672-8ff6-132f99ceafc0.png" alt="Ilustración mostrando una lista vacía con un lápiz y papel alrededor" />
+            <h3>No hay tareas</h3>
+            <p>Comienza añadiendo tu primera tarea</p>
+          </div>
+        `;
+        return;
+      }
+      
+      taskList.innerHTML = tasks.map(task => `
+        <div class="task">
+          <input 
+            type="checkbox" 
+            class="task-checkbox" 
+            ${task.completed ? 'checked' : ''} 
+            onchange="toggleTask(${task.id})" 
+          />
+          <div class="task-text ${task.completed ? 'completed' : ''}">
+            ${task.text}
+          </div>
+          <button class="task-delete" onclick="deleteTask(${task.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </button>
+        </div>
+      `).join('');
+    }
+    
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
