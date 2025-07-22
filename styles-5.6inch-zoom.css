@@ -1,0 +1,84 @@
+/* Optimización para pantallas de 5.6 pulgadas con efecto zoom 67% */
+@media (min-width: 360px) and (max-width: 400px) {
+    /* Tamaños reducidos al 67% para simular zoom */
+    .main-categories {
+        padding: 1rem 0.5rem;
+    }
+    
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+    
+    .category-card {
+        background: white;
+        border-radius: 8px;
+        padding: 0.8rem 0.5rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .category-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .category-icon-img {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 0.4rem;
+        object-fit: contain;
+    }
+    
+    .category-card h3 {
+        color: #2196F3;
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    
+    .category-card p {
+        color: #666;
+        font-size: 0.7rem;
+        line-height: 1.1;
+    }
+    
+    .carousel-slide img {
+        height: 150px;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* Ajustes adicionales para 5.6 pulgadas */
+    .header {
+        padding: 0.75rem 0;
+    }
+    
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .carousel-slide img {
+        height: 180px;
+    }
+    
+    .info-section {
+        padding: 1.5rem;
+    }
+    
+    .read-more-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
